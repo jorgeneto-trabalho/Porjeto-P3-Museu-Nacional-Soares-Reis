@@ -1,0 +1,407 @@
+openapi: 3.0.3
+info:
+  title: Projeto para Museu Nacional Soares dos Reis
+  description: |-
+    A API para a aplicação dedicada ao Museu Nacional Soares dos Reis
+  version: 1.0.0
+  contact:
+    email: 12997@ismt.pt
+servers:
+  - url: http://localhost:5000/api/v1
+    description: |-
+      Servidor local
+tags:
+  - name: ranking_evento_estudantes
+    description: Ranking dos estudantes no evento
+
+  - name: ranking_global_escolas
+    description: Ranking de escolas globalmente
+
+  - name: ranking_global_estudantes
+    description: Ranking global de estudantes
+
+  - name: respostas
+    description: Respostas das perguntas
+
+  - name: tentativas
+    description: Tentativas de cada estudante para uma pergunta
+paths:
+  /ranking-evento-estudante:
+    get:
+      description: 'Obtêm a informação do ranking dos esntudante num evento '
+      operationId: getRankingStudent
+      tags:
+        - ranking_evento_estudantes
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '500':
+          description: Erro ao tentar obter o ranking dos estudantes
+    post:
+      description: 'Cria o ranking dos estudantes num evento'
+      operationId: createRankingStudent
+      tags:
+        - ranking_evento_estudantes
+      responses:
+        '201':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '422':
+          description: Excessão de validação
+  /ranking-evento-estudante/{id}:
+    put:
+      description: 'Faz update do ranking de um estudante'
+      operationId: updateRankingStudent
+      tags:
+        - ranking_evento_estudantes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id do ranking de estudantes no evento
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '422':
+          description: Excessão de validação
+    delete:
+      description: 'Remove o ranking de um estudante '
+      operationId: deleteRankingStudent
+      tags:
+        - ranking_evento_estudantes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id do ranking de estudantes no evento
+          schema:
+            type: integer
+      responses:
+        '400':
+          description: Pedido inválido
+        '404':
+          description: Ranking de estudantes não encontrado
+  /ranking-global-escola:
+    get:
+      description: 'Obtêm a informação do ranking das escolas'
+      operationId: getSchoolRanking
+      tags:
+        - ranking_global_escolas
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '500':
+          description: Erro ao tentar obter o ranking das escolas
+    post:
+      description: 'Cria o ranking das escolas'
+      operationId: createSchoolRanking
+      tags:
+        - ranking_global_escolas
+      responses:
+        '201':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '422':
+          description: Excessão de validação
+  /ranking-global-escola/{id}:
+    put:
+      description: 'Faz update do ranking das escolas'
+      operationId: updateSchoolRanking
+      tags:
+        - ranking-global-escolas
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id do ranking das escolas
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '422':
+          description: Excessão de validação
+    delete:
+      description: 'Remove o ranking de uma escola '
+      operationId: deleteSchoolRanking
+      tags:
+        - ranking_global_escolas
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id do ranking da escola
+          schema:
+            type: integer
+      responses:
+        '400':
+          description: Pedido inválido
+        '404':
+          description: Ranking da escola não encontrado
+  /ranking-global-estudante:
+    get:
+      description: 'Obtêm a informação do ranking global dos estudantes'
+      operationId: getGlobalStudentRanking
+      tags:
+        - ranking_global_estudantes
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '500':
+          description: Erro ao tentar obter o ranking dos alunos globais
+    post:
+      description: 'Cria o ranking global dos estudantes'
+      operationId: createGlobalStudentRanking
+      tags:
+        - ranking_global_estudantes
+      responses:
+        '201':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '422':
+          description: Excessão de validação
+  /ranking-global-estudante/{id}:
+    put:
+      description: 'Faz update do ranking global dos alunos'
+      operationId: updateGlobalStudentRanking
+      tags:
+        - ranking-global-estudantes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id do ranking global dos estudantes
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '422':
+          description: Excessão de validação
+    delete:
+      description: 'Remove o ranking global de um estudante'
+      operationId: deleteGlobalStudentRanking
+      tags:
+        - ranking_global_estudantes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id do ranking global do estudante
+          schema:
+            type: integer
+      responses:
+        '400':
+          description: Pedido inválido
+        '404':
+          description: Ranking global do estudante não encontrado
+  /resposta:
+    post:
+      description: 'Cria uma resposta'
+      operationId: createAnswer
+      tags:
+        - respostas
+      responses:
+        '201':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '422':
+          description: Excessão de validação
+  /resposta/{id}:
+    get:
+      description: 'Obtêm a informação de uma resposta'
+      operationId: getAnswer
+      tags:
+        - respostas
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id da resposta
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '500':
+          description: Erro ao tentar obter a resposta
+    put:
+      description: 'Faz update da resposta via id'
+      operationId: updateAnswer
+      tags:
+        - respostas
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id da resposta
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '422':
+          description: Excessão de validação
+    delete:
+      description: 'Remove a resposta'
+      operationId: deleteAnswer
+      tags:
+        - respostas
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id da resposta
+          schema:
+            type: integer
+      responses:
+        '400':
+          description: Pedido inválido
+        '404':
+          description: Resposta não encontrada
+  /tentativa:
+    get:
+      description: 'Obtêm a informação das tentativas'
+      operationId: getTry
+      tags:
+        - tentativas
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '500':
+          description: Erro ao tentar obter as tentativas
+    post:
+      description: 'Cria uma tentativa'
+      operationId: createTry
+      tags:
+        - tentativas
+      responses:
+        '201':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '422':
+          description: Excessão de validação
+  /tentativa/{id}:
+    put:
+      description: 'Faz update de uma tentativa via id'
+      operationId: updateTry
+      tags:
+        - tentativas
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id da tentativa
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Pedido inválido
+        '422':
+          description: Excessão de validação
+    delete:
+      description: 'Remove a tentativa'
+      operationId: deleteTry
+      tags:
+        - tentativas
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id da tentativa
+          schema:
+            type: integer
+      responses:
+        '400':
+          description: Pedido inválido
+        '404':
+          description: Tentativa não encontrada
+      
+  
+components:
+  schemas:
+    Ranking_evento_estudantes:
+      type: object
+      properties:
+        id:
+          type: integer
+        id_estudante:
+          type: integer
+        id_evento:
+          type: integer
+        pontos:
+          type: integer
+
+    Ranking_global_escolas:
+      type: object
+      properties:
+        id:
+          type: integer
+        id_escola:
+          type: integer
+        pontos:
+          type: integer
+
+    Ranking_global_estudantes:
+      type: object
+      properties:
+        id:
+          type: integer
+        id_estudante:
+          type: integer
+        id_evento:
+          type: integer
+        pontos:
+          type: integer
+    Respostas:
+      type: object
+      properties:
+        id:
+          type: integer
+        texto:
+          type: string
+
+    Tentativas:
+      type: object
+      properties:
+        id:
+          type: integer
+        id_estudante:
+          type: integer
+        id_pergunta:
+          type: integer
+        id_resposta:
+          type: integer
+        id_evento:
+          type: integer
+        correta:
+          type: integer
+        attemptedAt:
+          type: string
