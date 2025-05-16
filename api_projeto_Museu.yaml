@@ -29,6 +29,26 @@ tags:
   - name: desafios
     description: Desafios propostos no final de cada visita
 
+  - name: desafio-perguntas
+    description: Conecta as perguntas ao desafio
+
+  - name: estudantes
+    description: O estudante
+
+  - name: escolas
+    description: As escolas
+
+  - name: eventos
+    description: Visitas de estudo que decorrem
+
+  - name: perguntas
+    description: A pergunta
+
+  - name: pergunta-resposta
+    description: Conecta a pergunta à resposta
+
+
+
 paths:
   /ranking-evento-estudante:
     get:
@@ -1090,7 +1110,7 @@ components:
       required:
         - nome
         - codigo
-v
+
     Estudante:
       type: object
       properties:
@@ -1203,5 +1223,3 @@ v
         - id_pergunta
         - texto
         - correta
-
-
