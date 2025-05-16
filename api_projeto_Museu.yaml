@@ -342,9 +342,7 @@ paths:
         '400':
           description: Pedido inválido
         '404':
-          description: Tentativa não encontrada
-      
-  
+          description: Tentativa não encontrada     
 components:
   schemas:
     Ranking_evento_estudantes:
