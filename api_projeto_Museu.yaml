@@ -25,8 +25,6 @@ tags:
 
   - name: tentativas
     description: Tentativas de cada estudante para uma pergunta
-<<<<<<< HEAD
-=======
 
   - name: desafios
     description: Desafios propostos no final de cada visita
@@ -49,9 +47,6 @@ tags:
   - name: pergunta-resposta
     description: Conecta a pergunta à resposta
 
-
-
->>>>>>> Branch_T
 paths:
   /ranking-evento-estudante:
     get:
@@ -369,10 +364,9 @@ paths:
         '400':
           description: Pedido inválido
         '404':
-<<<<<<< HEAD
+
           description: Tentativa não encontrada     
-=======
-          description: Tentativa não encontrada
+
     /desafios:
     get:
       summary: Listar todos os desafios
@@ -483,7 +477,7 @@ paths:
         '204':
           description: Desafio eliminado com sucesso
     /desafios/{id_desafio}/perguntas:
-    get:
+      get:
       summary: Listar perguntas associadas a um desafio
       tags:
         - Desafio Perguntas
@@ -991,7 +985,6 @@ paths:
         '204':
           description: Resposta eliminada com sucesso
 
->>>>>>> Branch_T
 components:
   schemas:
     Ranking_evento_estudantes:
@@ -1027,10 +1020,7 @@ components:
           type: integer
         pontos:
           type: integer
-<<<<<<< HEAD
-=======
-    
->>>>>>> Branch_T
+
     Respostas:
       type: object
       properties:
@@ -1056,8 +1046,6 @@ components:
           type: integer
         attemptedAt:
           type: string
-<<<<<<< HEAD
-=======
 
     Desafio:
       type: object
@@ -1235,4 +1223,4 @@ components:
         - id_pergunta
         - texto
         - correta
->>>>>>> Branch_T
+
