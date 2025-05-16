@@ -1,6 +1,5 @@
 
-import { Avatar, Box, Button, Container, List, ListItem, ListItemAvatar, ListItemText, TextField, Typography } from "@mui/material";
-import PersonIcon from '@mui/icons-material/Person'
+import { Box, Button, Container, List, ListItem, ListItemText, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 
@@ -10,9 +9,9 @@ const InserirNome = () => {
     const [nomes, setNomes] = useState("Jogadores")
     return (
         <>
-            <Container maxWidth="sm" sx={{ mt: 4, mb: 4 }}>
+            <Container>
                 <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <Typography component="h1" variant="h5">Qual o teu nome?</Typography>
                         {/* stack erros para depois*/}
                         <TextField
@@ -31,20 +30,14 @@ const InserirNome = () => {
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}>
-                            Entrar
+                            Começar
                         </Button>
                     </Box>
-                    <Box>{/*Usa o FolderList do MUI*/}
-                        <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <PersonIcon />
-                                        <ListItemText primary={nomes} />
-                                    </Avatar>
-                                </ListItemAvatar>
+                    <Box sx={{ width: 1 }}>{/*Usa o FolderList do MUI*/}
+                        <List sx={{ width: '100%'}}>
+                            <ListItem sx={{bgcolor: 'primary.main' }}>
+                                <ListItemText primary={nomes} />
                             </ListItem>
-
                         </List>
                     </Box>
                 </Box>
