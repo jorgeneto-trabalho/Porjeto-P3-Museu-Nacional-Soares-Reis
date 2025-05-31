@@ -12,10 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 sequelize.sync();
 
-app.use("/api/v1", require("./routes/aluno.route.js"));
-app.use("/api/v1", require("./routes/professor.route.js"));
-app.use("/api/v1", require("./routes/disciplina.route.js"));
-app.use("/api/v1", require("./routes/auth.route"));
+app.use("/api/v1", require("./routes/estudante.route.js"));
 
 app.listen(app.get("port"), () => {
     console.log("Servidor a correr na porta "+app.get("port"));
