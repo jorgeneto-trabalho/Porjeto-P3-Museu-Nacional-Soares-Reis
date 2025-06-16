@@ -256,13 +256,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Estudante'
+                  $ref: "#/components/schemas/Estudante"
         "404":
           description: Estudante não encontrado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "401":
           description: Não autorizado
         "500":
@@ -270,7 +270,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /estudante/{id}/ranking-evento:
     get:
       tags:
@@ -293,13 +296,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Estudante'
+                  $ref: "#/components/schemas/Estudante"
         "404":
           description: Estudante não encontrado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "401":
           description: Não autorizado
         "500":
@@ -307,7 +310,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /estudante/{id}/ranking-global:
     get:
       tags:
@@ -324,19 +330,19 @@ paths:
             format: int64
       responses:
         "200":
-          description: Ranking global do estudante 
+          description: Ranking global do estudante
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Estudante'
+                  $ref: "#/components/schemas/Estudante"
         "404":
           description: Estudante não encontrado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "401":
           description: Não autorizado
         "500":
@@ -344,7 +350,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
     put:
       tags:
         - ranking_global_estudantes
@@ -418,13 +427,13 @@ paths:
                 $ref: "#/components/schemas/Error"
               example:
                 message: Erro interno no servidor
-                code: 500  
+                code: 500
   /estudante/ranking-global:
     get:
       tags:
         - ranking_global_estudantes
       summary: Retorna o ranking global dos estudante
-      operationId: getStudantGlobalRanking
+      operationId: getGlobalStudentRanking
       responses:
         "200":
           description: Ranking de esutdantes globalmente
@@ -433,13 +442,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Ranking_global_estudantes'
+                  $ref: "#/components/schemas/Ranking_global_estudantes"
         "404":
           description: Estudante não encontrado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "401":
           description: Não autorizado
         "500":
@@ -447,13 +456,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /estudante/{id}/tentativa:
     post:
       tags:
         - tentativas
       summary: Cria uma nova tentativa de resposta por um estudante
       operationId: createAttempt
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID do estudante cuja tentativa vai ser criada
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
       requestBody:
         required: true
         content:
@@ -497,19 +518,19 @@ paths:
             format: int64
       responses:
         "200":
-          description: Ranking global do estudante 
+          description: Ranking global do estudante
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Estudante'
+                  $ref: "#/components/schemas/Estudante"
         "404":
           description: Estudante não encontrado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "401":
           description: Não autorizado
         "500":
@@ -517,7 +538,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /estudante/{id}/evento/pontuação:
     get:
       tags:
@@ -540,13 +564,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Tentativa'
+                  $ref: "#/components/schemas/Tentativa"
         "404":
           description: Estudante não encontrado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "401":
           description: Não autorizado
         "500":
@@ -554,7 +578,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /estudante/{id}/global/pontuação:
     get:
       tags:
@@ -577,13 +604,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Tentativa'
+                  $ref: "#/components/schemas/Tentativa"
         "404":
           description: Estudante não encontrado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "401":
           description: Não autorizado
         "500":
@@ -591,7 +618,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /estudante/{id}/tentativas/{id_tentativa}:
     put:
       tags:
@@ -886,13 +916,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Escola'
+                  $ref: "#/components/schemas/Escola"
         "404":
           description: Escola não encontrado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "401":
           description: Não autorizado
         "500":
@@ -900,7 +930,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /escola/{id}/ranking-global:
     get:
       tags:
@@ -923,13 +956,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Ranking_global_escolas'
+                  $ref: "#/components/schemas/Ranking_global_escolas"
         "404":
           description: Escola não encontrada
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "401":
           description: Não autorizado
         "500":
@@ -937,7 +970,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /escolas/ranking-global:
     post:
       tags:
@@ -985,7 +1021,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Ranking_global_escolas'
+                  $ref: "#/components/schemas/Ranking_global_escolas"
         "401":
           description: Não autorizado
         "500":
@@ -993,7 +1029,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /escola/ranking-global/{id}:
     put:
       tags:
@@ -1236,13 +1275,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Evento'
+                  $ref: "#/components/schemas/Evento"
         "404":
           description: Evento não encontrado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "401":
           description: Não autorizado
         "500":
@@ -1250,12 +1289,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /evento/{id}/desafio-perguntas:
     get:
       tags:
         - eventos
-      summary: Retorna as perguntas e as suas respostas do desafio relacionado a este evento 
+      summary: Retorna as perguntas e as suas respostas do desafio relacionado a este evento
       operationId: getQuestionsForEvent
       parameters:
         - in: path
@@ -1273,13 +1315,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Evento'
+                  $ref: "#/components/schemas/Evento"
         "404":
           description: Evento não encontrado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "401":
           description: Não autorizado
         "500":
@@ -1287,13 +1329,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /evento/{id}/ranking-evento:
     post:
       tags:
         - ranking_evento_estudantes
       summary: Cria um novo ranking de estudante para o evento
       operationId: createEventRanking
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID do evento cujo ranking queremos obter
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
       requestBody:
         required: true
         content:
@@ -1343,13 +1397,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Ranking_evento_estudantes'
+                  $ref: "#/components/schemas/Ranking_evento_estudantes"
         "404":
           description: Escola não encontrada
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "401":
           description: Não autorizado
         "500":
@@ -1357,7 +1411,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /evento/ranking-evento/{id}:
     put:
       tags:
@@ -1405,7 +1462,7 @@ paths:
       tags:
         - ranking_evento_estudantes
       summary: Remove um ranking do evento
-      operationId: deleteEvent
+      operationId: deleteEventRanking
       parameters:
         - in: path
           name: id
@@ -1802,6 +1859,15 @@ paths:
         - respostas
       summary: Cria uma resposta nova para a pergunta
       operationId: createAnswer
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID da pergunta para a qual queremos adicionar uma resposta
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
       requestBody:
         required: true
         content:
@@ -1834,7 +1900,7 @@ paths:
     get:
       tags:
         - respostas
-      summary: Retorna uma resposta 
+      summary: Retorna uma resposta
       operationId: getAnswer
       parameters:
         - in: path
@@ -1955,21 +2021,21 @@ paths:
             type: string
             format: string
       responses:
-        '200':
+        "200":
           description: Logout realizado com sucesso
-        '400':
+        "400":
           description: Dados inválidos
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '403':
+        "403":
           description: Acesso não autorizado
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '500':
+        "500":
           description: Erro interno
           content:
             application/json:
@@ -1998,25 +2064,25 @@ paths:
                   type: string
                   format: string
       responses:
-        '200':
+        "200":
           description: Autenticação com sucesso
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Auth'
-        '400':
+                $ref: "#/components/schemas/Auth"
+        "400":
           description: Dados inválidos
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '403':
+        "403":
           description: Acesso não autorizado
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '500':
+        "500":
           description: Erro interno
           content:
             application/json:
@@ -2039,7 +2105,7 @@ paths:
             type: string
             format: string
       responses:
-        '200':
+        "200":
           description: Renovação do token realizada com sucesso
           content:
             application/json:
@@ -2049,19 +2115,19 @@ paths:
                   AccessToken:
                     type: string
                     format: string
-        '404':
+        "404":
           description: Dados inválidos
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '403':
+        "403":
           description: Acesso não autorizado
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '500':
+        "500":
           description: Erro interno
           content:
             application/json:
@@ -2075,7 +2141,7 @@ paths:
       tags:
         - auth
       summary: Registo de um novo utilizador
-      security: [] 
+      security: []
       requestBody:
         description: Dados do utilizador
         content:
@@ -2094,21 +2160,21 @@ paths:
                   format: string
         required: true
       responses:
-        '200':
+        "200":
           description: Utilizador registado com sucesso
-        '400':
+        "400":
           description: Dados inválidos
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '403':
+        "403":
           description: Acesso não autorizado
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '500':
+        "500":
           description: Erro interno
           content:
             application/json:
@@ -2198,14 +2264,14 @@ components:
         id_escola:
           type: array
           description: O id das escolas que participaram no evento
-          items: 
-            $ref: '#/components/schemas/Escola'
+          items:
+            $ref: "#/components/schemas/Escola"
         id_desafio:
           type: integer
           format: int64
           description: O id do desafio relacionado a este evento
-          items: 
-            $ref: '#/components/schemas/Desafio'
+          items:
+            $ref: "#/components/schemas/Desafio"
         nome:
           type: string
           description: Nome do evento
@@ -2250,7 +2316,7 @@ components:
           maxLength: 20
         descricao:
           type: string
-          description: Descrição do desfio 
+          description: Descrição do desfio
           example: Este quiz possui perguntas sobre pinturas surrealistas do tempo 1856 a 1939
         createdAt:
           type: string
@@ -2260,7 +2326,7 @@ components:
           type: string
           format: date-time
           example: "2025-05-12T12:30:00Z"
-    
+
     DesafioPergunta:
       required:
         - id
@@ -2276,12 +2342,12 @@ components:
           format: int64
           description: Id do desaifo ligado a essa pergunta
           items:
-            $ref: '#/components/schemas/Desafio'
+            $ref: "#/components/schemas/Desafio"
         id_pergunta:
           type: array
           description: Os ids das perguntas ligadas a este desafio
           items:
-            $ref: '#/components/schemas/Pergunta'
+            $ref: "#/components/schemas/Pergunta"
         createdAt:
           type: string
           format: date-time
@@ -2318,7 +2384,7 @@ components:
           type: string
           format: date-time
           example: "2025-05-02T09:30:00Z"
-    
+
     PerguntaResposta:
       required:
         - id
@@ -2334,17 +2400,17 @@ components:
           format: int64
           description: Id da pergunta a que estas respostas estão relacionadas
           items:
-            $ref: '#/components/schemas/Pergunta'
+            $ref: "#/components/schemas/Pergunta"
         id_resposta:
           type: array
           description: Id das respostas relacionadas a esta pergunta
           items:
-            $ref: '#/components/schemas/Pergunta'
+            $ref: "#/components/schemas/Pergunta"
         correta:
           type: array
           description: O id da(s) resposta(s) correta(s)
           items:
-            $ref: '#/components/schemas/Pergunta'
+            $ref: "#/components/schemas/Pergunta"
         createdAt:
           type: string
           format: date-time
@@ -2376,7 +2442,7 @@ components:
           type: string
           format: date-time
           example: "2025-05-12T10:45:00Z"
-    
+
     Tentativa:
       required:
         - id
@@ -2392,25 +2458,25 @@ components:
           format: int64
           description: Id do estudante realcionado a esta tentativa
           items:
-            $ref: '#/components/schemas/Estudante'
+            $ref: "#/components/schemas/Estudante"
         id_pergunta:
           type: integer
           format: int64
           description: Id da pergunta que o estudante tentou acertar
           items:
-            $ref: '#/components/schemas/Pergunta'
+            $ref: "#/components/schemas/Pergunta"
         id_resposta:
           type: integer
           format: int64
           description: Id da resposta que o estudante escolheu na sua tentativa
           items:
-            $ref: '#/components/schemas/Resposta'
+            $ref: "#/components/schemas/Resposta"
         id_evento:
           type: integer
           format: int64
           description: Id do evento em que o estudante respondeu
           items:
-            $ref: '#/components/schemas/Evento'         
+            $ref: "#/components/schemas/Evento"
         correta:
           type: boolean
           description: Propriedade que permite saber se o aluno respondeu corretamente ou incorretamente
@@ -2418,7 +2484,7 @@ components:
           type: string
           format: date-time
           example: "2025-05-12T10:45:00Z"
-        
+
     Ranking_evento_estudantes:
       required:
         - id
@@ -2433,18 +2499,18 @@ components:
           type: array
           description: Id dos alunos neste ranking
           items:
-            $ref: '#/components/schemas/Estudante'
+            $ref: "#/components/schemas/Estudante"
         id_evento:
           type: integer
           format: int64
-          description: Id do evento 
+          description: Id do evento
           items:
-            $ref: '#/components/schemas/Evento'
+            $ref: "#/components/schemas/Evento"
         pontos:
           type: array
           description: Pontuação de cada aluno baseada nas respostas a que responderam corretamente nas suas tentativas
           items:
-            $ref: '#/components/schemas/Tentativa'
+            $ref: "#/components/schemas/Tentativa"
         createdAt:
           type: string
           format: date-time
@@ -2469,13 +2535,13 @@ components:
           format: int64
           description: Id de todas as escolas com pontuação
           items:
-            $ref: '#/components/schemas/Escola'
+            $ref: "#/components/schemas/Escola"
         pontos:
           type: integer
           format: int64
           description: Pontuação total da escola baseado na soma da pontuação dos seus alunos
           items:
-            $ref: '#/components/schemas/Ranking_global_estudantes'
+            $ref: "#/components/schemas/Ranking_global_estudantes"
         createdAt:
           type: string
           format: date-time
@@ -2500,13 +2566,13 @@ components:
           format: int64
           description: Id do estudante com esta pontuação
           items:
-            $ref: '#/components/schemas/Estudante'
+            $ref: "#/components/schemas/Estudante"
         pontos:
           type: integer
           format: int64
           description: Pontuação de um estudante baseado em todos os eventos em que participou
           items:
-            $ref: '#/components/schemas/Ranking_evento_estudantes'
+            $ref: "#/components/schemas/Ranking_evento_estudantes"
         createdAt:
           type: string
           format: date-time
@@ -2537,7 +2603,4 @@ components:
           type: integer
       example:
         message: Recurso não encontrado
-        code: 404    
-
-
- 
+        code: 404
