@@ -3,14 +3,12 @@
 
 const sequelize = require("sequelize");
 const conexao = require("../config/database");
-const Eventos = require("./evento.model")
-const Tentativas = require("./tentativa.model");
-const RankingEventoEstudantes = require("./ranking-evento-estudante.model");
-const RankingGlobalEstudantes = require("./ranking-global-estudante.model");
-
+const Eventos = require("./evento.model");
+const DesafioPerguntas = require("./desafio-pergunta.model");
+const Perguntas = require("./pergunta.model");
 /*Primeiro criamos uma const <nome do model> = conexao.define(o resto vai ser escrito dentro destes parênteses) */
-const Estudantes = conexao.define(
-    "estudantes", /*<"Nome da tabela">, */
+const Desafios = conexao.define(
+    "desafios", /*<"Nome da tabela">, */
     {
         /*Aqui adicionamos os parâmetros da tabela. Não é necessário adicionar o createdAt e o updatedAt */
         id: {
@@ -22,30 +20,27 @@ const Estudantes = conexao.define(
             type: sequelize.STRING,
             allowNull: false /*Define se este parâmetro pode ser nulo*/
         },
-        token_acesso: {
+        codigo: {
             type: sequelize.STRING,
             allowNull: false
         },
-
+        descricao: {
+            type: sequelize.STRING,
+            allowNull: false
+        }
     },
     {
-        tableName: "estudantes", /*O nome da tabela*/
+        tableName: "desafios", /*O nome da tabela*/
         timestamps: true /*Adiciona os timestamps*/
     }
 ); /*Fim dos parênteses*/
 
 /*Esta parte define as relações desta tabela, exitem "hasOne","belongsTo", "hasMany", "belongsToMany". Mais informação em sequelize.org V6, nas "Associations" e "Advaced associations concepts".
 Como a tabela estudantes importa o id do evento, utilizamos um belongTo*/
-Estudantes.belongsTo(Eventos/*Nome da tabela*/, {
-    foreignKey: "id_evento",/*Nome da chave na tabela estudantes*/
-    targetKey: "id",/*Nome da chave na tabela eventos*/
-    as: "participouEm"/*Nome da realção*/
+Desafios.belongsToMany(Perguntas, {
+    through: DesafioPerguntas
 });
-
-Estudantes.hasOne(Tentativas);
-Estudantes.hasOne(RankingEventoEstudantes);
-Estudantes.hasOne(RankingGlobalEstudantes);
-
+Desafios.hasMany(Eventos);
 
 /*Por último, só precisamos de fazer exportação do model*/
-module.exports = Estudantes;
+module.exports = Desafios;

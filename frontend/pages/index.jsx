@@ -1,7 +1,7 @@
 
 import { Box } from '@mui/material'
-import NavBar from '../components/navbar/index'
-import CodigoVerificacao from '../components/verificacao-codigo'
+import NavBar from '../components/NavBar/NavBar'
+import CodigoVerificacao from '../components/VerificacaoCodigo/VerificacaoCodigo'
 
 const StartingPage = () => {
     return (

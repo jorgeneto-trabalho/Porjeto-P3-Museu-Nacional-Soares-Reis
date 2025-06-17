@@ -1,5 +1,5 @@
 
-import SelecionarPergunta from "../components/perguntas"
+import SelecionarPergunta from "../components/Perguntas/Pergunta"
 
 const Pergunta = () => {
     return (

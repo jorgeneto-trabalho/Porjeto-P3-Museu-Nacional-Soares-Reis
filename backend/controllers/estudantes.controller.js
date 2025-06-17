@@ -1,10 +1,5 @@
 /*Primeiro, a importação de todos os models necessários*/
 const Estudantes = require("../models/estudante.model");
-const Eventos = require("../models/evento.model");
-const Escolas = require("../models/escola.model");
-const RankingEventoEstudantes = require("../models/ranking_evento_estudante")
-const RankingGlobalEstudantes = require("../models/ranking_global_estudante")
-const { model } = require("../config/database");
 /*Também temos de adicionar uma const para endpointsFunction*/
 const endpointsFunction = {};
 

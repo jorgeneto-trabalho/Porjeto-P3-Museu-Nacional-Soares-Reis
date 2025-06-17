@@ -1,5 +1,6 @@
 
-import { Box, Button, Container, List, ListItem, ListItemText, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, List, ListItem, ListItemText, TextField, ThemeProvider, Typography } from "@mui/material";
+import { purple } from "@mui/material/colors";
 import React, { useState } from "react";
 
 
@@ -9,9 +10,17 @@ const InserirNome = () => {
     const [nomes, setNomes] = useState("Jogadores")
     return (
         <>
-            <Container>
+            <ThemeProvider
+                theme={{
+                    palette: {
+                        primary: purple
+
+                    },
+                }}
+            />
+            <Container sx={{ bgcolor: 'primary.main' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Typography component="h1" variant="h5">Qual o teu nome?</Typography>
                         {/* stack erros para depois*/}
                         <TextField
@@ -34,8 +43,8 @@ const InserirNome = () => {
                         </Button>
                     </Box>
                     <Box sx={{ width: 1 }}>{/*Usa o FolderList do MUI*/}
-                        <List sx={{ width: '100%'}}>
-                            <ListItem sx={{bgcolor: 'primary.main' }}>
+                        <List sx={{ width: '100%' }}>
+                            <ListItem sx={{ bgcolor: 'primary.main' }}>
                                 <ListItemText primary={nomes} />
                             </ListItem>
                         </List>

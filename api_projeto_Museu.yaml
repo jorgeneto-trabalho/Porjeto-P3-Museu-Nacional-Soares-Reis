@@ -978,7 +978,7 @@ paths:
     post:
       tags:
         - ranking_global_escolas
-      summary: Cria uma nova escola
+      summary: Cria o ranking de uma nova escola
       operationId: createSchoolRanking
       requestBody:
         required: true
@@ -1838,7 +1838,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PerguntaResposta"
+                type: array
+                items:
+                  $ref: "#/components/schemas/PerguntaResposta"
         "404":
           description: pergunta não encontrada
           content:
@@ -2194,7 +2196,6 @@ components:
       required:
         - id
         - nome
-
       type: object
       properties:
         id:

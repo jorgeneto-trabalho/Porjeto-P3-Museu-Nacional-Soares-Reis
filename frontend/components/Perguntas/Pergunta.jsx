@@ -1,5 +1,5 @@
 
-import PerguntaLayout from "./pergunta-informacao"
+import PerguntaLayout from "./PerguntaInformacao"
 
 
 
