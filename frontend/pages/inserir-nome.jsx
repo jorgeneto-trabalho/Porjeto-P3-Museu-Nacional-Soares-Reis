@@ -1,6 +1,6 @@
 
 import { Box } from '@mui/material'
-import InserirNome from '../components/inserir-nome'
+import InserirNome from '../components/InserirNome/InserirNome'
 
 const NamingRoom = () => {
     return (

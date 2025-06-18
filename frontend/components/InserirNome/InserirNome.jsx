@@ -1,48 +1,133 @@
-
-import { Box, Button, Container, List, ListItem, ListItemText, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, List, ListItem, ListItemText, TextField, Typography, createTheme, ThemeProvider, Input } from "@mui/material";
 import React, { useState } from "react";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#3f50b5',
+    },
+  },
+});
 
 
 {/*Inserir uma const Jogadores que insere o nome dos participantes deste quiz*/ }
 const InserirNome = () => {
     const [nome, setNome] = useState("");
-    const [nomes, setNomes] = useState("Jogadores")
+    const [nomes, setNomes] = useState([]);
+    const [erro, setErro] = useState(false);
+
+    const RegistarNickname = () => {
+        const nomeLimpo = nome.trim();
+        if (nome.trim() === "") {
+            setErro(true);
+            return;
+        }
+        setNomes([...nomes, nomeLimpo]);
+        setNome("");
+        setErro(false);
+    };
+
+
+
+
     return (
-        <>
-            <Container>
-                <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                        <Typography component="h1" variant="h5">Qual o teu nome?</Typography>
-                        {/* stack erros para depois*/}
-                        <TextField
-                            id="nome"
-                            label="Nome:"
-                            name="nome"
-                            type="nome"
+        <ThemeProvider theme = {theme}>
+            <Box
+                sx={{
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    width: "100vw",
+                    height: "100vh",
+                    backgroundImage: "url('/bgazul.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    p: 2,
+                }}
+            >
+                <Box 
+                    sx={{
+                        display: "flex",
+                        width: "60%",
+                        height: "60%",
+                        justifyContent: "center",
+                        borderRadius: "20px",
+                        background: "rgba(255, 255, 255, 0.2)",
+                        boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
+                        backdropFilter: "blur(10px)",
+                        WebkitBackdropFilter: "blur(10px)",
+                        overflow: "hidden",
+                    }}
+                >
+                    {/*Parte esquerda -Formulário*/}
+                    <Box sx={{flex: 0.55, p: 4, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",}}>
+                        <Typography variant="h4" sx={{mb: 8, fontWeight: "bold", color: "#3E5376", textAlign: "center"}}>
+                            NICKNAME
+                        </Typography>
+
+                        <Input
                             value={nome}
                             onChange={(e) => setNome(e.target.value)}
-                            required
-                            fullWidth
-                            sx={{ mt: 2 }}
+                            color="primary"
+                            placeholder="Introduza o Nickname"
+                            sx={{ width: "80%", mb: 1 }}
                         />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}>
-                            Começar
-                        </Button>
+                        {erro && (
+                        <Typography
+                            variant="caption"
+                            sx={{ color: "red", mb: 2, alignSelf: "flex-start", pl: "10%" }}
+                        >
+                            O nickname não pode estar vazio
+                        </Typography>
+                        )}
+
+                        <Typography variant="body2" sx={{ mb: 3, textAlign: "center", color: "#34495e" }}>
+                            Podes ser criativo, mas não demais.
+                        </Typography>
+
+                        <Box textAlign="center">
+                            <Button
+                                variant="contained"
+                                onClick={RegistarNickname}
+                                sx={{ borderRadius: "20px", px: 4, backgroundColor: "#3E5376", color: "B2CFFF", textTransform: "none"}}
+                            >
+                                Entrar
+                            </Button>
+                        </Box>
                     </Box>
-                    <Box sx={{ width: 1 }}>{/*Usa o FolderList do MUI*/}
-                        <List sx={{ width: '100%'}}>
-                            <ListItem sx={{bgcolor: 'primary.main' }}>
-                                <ListItemText primary={nomes} />
+
+                    {/* Parte direita - Lista */}
+                    <Box sx={{ flex: 0.45, backdropFilter: "blur(5px)", background: "rgba(255, 255, 255, 0.32)", p: 3, border: "3px solid white", borderBottomRightRadius: 20, borderTopRightRadius: 20}}>
+                        <List sx={{ maxHeight: "100%", overflowY: "auto" }}>
+                        {nomes.map((nome, index) => (
+                            <ListItem
+                                key={index}
+                                sx={{
+                                    mb: 1,
+                                    backgroundColor: "#fff",
+                                    borderTopRightRadius: "20px",
+                                    borderBottomRightRadius: "20px",
+                                    boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+                                    color: "black",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    px: 2,
+                                    pb: 1,
+                                    borderLeft: `5px solid ${["#FFA300", "#FAA3D0", "#8EB291", "#96ADD2"][index % 4]}`,
+                                }}
+                            >
+                                <ListItemText primary={nome} />
                             </ListItem>
+                        ))}
                         </List>
                     </Box>
                 </Box>
-            </Container>
-        </>
+            </Box>
+        </ThemeProvider>
     )
 }
 
