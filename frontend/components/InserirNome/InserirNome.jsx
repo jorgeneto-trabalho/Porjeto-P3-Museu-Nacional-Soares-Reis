@@ -1,4 +1,4 @@
-import { Box, Button, Container, List, ListItem, ListItemText, TextField, Typography, createTheme, ThemeProvider, Input } from "@mui/material";
+import { Box, Button, Container, List, ListItem, ListItemText, TextField, Typography, createTheme, ThemeProvider, Input, Link } from "@mui/material";
 import React, { useState } from "react";
 
 const theme = createTheme({
@@ -90,13 +90,15 @@ const InserirNome = () => {
                         </Typography>
 
                         <Box textAlign="center">
-                            <Button
-                                variant="contained"
-                                onClick={RegistarNickname}
-                                sx={{ borderRadius: "20px", px: 4, backgroundColor: "#3E5376", color: "B2CFFF", textTransform: "none"}}
-                            >
-                                Entrar
-                            </Button>
+                            <Link href="/resumo">
+                                <Button
+                                    variant="contained"
+                                    onClick={RegistarNickname}
+                                    sx={{ borderRadius: "20px", px: 4, backgroundColor: "#3E5376", color: "B2CFFF", textTransform: "none"}}
+                                >
+                                    Entrar
+                                </Button>
+                            </Link>
                         </Box>
                     </Box>
 
