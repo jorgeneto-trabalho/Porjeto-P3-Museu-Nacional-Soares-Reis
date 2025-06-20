@@ -12,24 +12,8 @@ const theme = createTheme({
 
 {/*Inserir uma const Jogadores que insere o nome dos participantes deste quiz*/ }
 const Resumo = () => {
-    const [nome, setNome] = useState("");
     const [nomes, setNomes] = useState([]);
-    const [erro, setErro] = useState(false);
-
-    const RegistarNickname = () => {
-        const nomeLimpo = nome.trim();
-        if (nome.trim() === "") {
-            setErro(true);
-            return;
-        }
-        setNomes([...nomes, nomeLimpo]);
-        setNome("");
-        setErro(false);
-    };
-
-
-
-
+    
     return (
         <ThemeProvider theme = {theme}>
             <Box
@@ -77,7 +61,7 @@ const Resumo = () => {
                             <Link href="/resumo">
                                 <Button
                                     variant="contained"
-                                    onClick={RegistarNickname}
+                                    
                                     sx={{ borderRadius: "20px", px: 4, backgroundColor: "#3E5376", color: "B2CFFF", textTransform: "none"}}
                                 >
                                     Começar
