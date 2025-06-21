@@ -3,8 +3,6 @@
 
 const sequelize = require("sequelize");
 const conexao = require("../config/database");
-const Desafios = require("./desafio.model");
-const Perguntas = require("./pergunta.model")
 
 /*Primeiro criamos uma const <nome do model> = conexao.define(o resto vai ser escrito dentro destes parênteses) */
 const DesafioPerguntas = conexao.define(
@@ -22,19 +20,6 @@ const DesafioPerguntas = conexao.define(
         timestamps: true
     }
 ); /*Fim dos parênteses*/
-
-/*Esta parte define as relações desta tabela, exitem "hasOne","belongsTo", "hasMany", "belongsToMany". Mais informação em sequelize.org V6, nas "Associations" e "Advaced associations concepts".
-Como a tabela estudantes importa o id do evento, utilizamos um belongTo*/
-DesafioPerguntas.belongsTo(Desafios, {
-    foreignKey: "id_desafio",
-    targetKey: "id",
-    as: "desafioParaARelacaoMM"
-});
-DesafioPerguntas.belongsTo(Perguntas, {
-    foreignKey: "id_pergunta",
-    targetKey: "id",
-    as: "perguntaParaARelacaoMM"
-})
 
 /*Por último, só precisamos de fazer exportação do model*/
 module.exports = DesafioPerguntas;

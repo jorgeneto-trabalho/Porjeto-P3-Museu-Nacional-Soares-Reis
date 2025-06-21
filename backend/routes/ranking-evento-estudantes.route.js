@@ -6,7 +6,7 @@ const router = express.Router();
 
 const middleware = require("../middleware");
 
-const rankingEventoEstudantesController = require("../controllers/ranking-evento-estudantes.controller");
+const rankingEventoEstudantesController = require("../controllers/ranking-evento-estudante.controller");
 
 /* Para criar rotas é necessário ir ver ao ficheiro da API para qual tag elas vão ser usadas e como elas estão lá estruturadas. 
 Para as fazer é -> router.<o método>(<"/o endpoit/:<o parâmetro se necessário>">, middleware.checkToken(para utilizar a middleware de autenticação de token), <a const que importa o controller apropriado>.<o id de operação que está no ficheiro da api>)  */

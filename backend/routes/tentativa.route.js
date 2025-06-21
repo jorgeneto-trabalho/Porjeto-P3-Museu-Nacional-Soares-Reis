@@ -19,7 +19,7 @@ router.get("/estudante/:id/tentativa", middleware.checkToken, tentativaControlle
 
 router.get("/estudante/:id/evento/pontuação", middleware.checkToken, tentativaController.getStudantEventPoints);
 
-router.get("/estudante/:id/global/pontuação", middleware.checkToken, tentativaController.getStudantTotalPoints);
+router.get("/escola/:id/global/pontuação", middleware.checkToken, tentativaController.getSchoolTotalPoints);
 
 router.put("/estudante/:id/tentativas/:id_tentativa", middleware.checkToken, tentativaController.updateAttempt);
 

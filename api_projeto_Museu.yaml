@@ -239,7 +239,7 @@ paths:
       tags:
         - estudantes
       summary: Retorna as escolas em que este estudante esteve inscrito
-      operationId: getStudantSchool
+      operationId: getStudentSchool
       parameters:
         - in: path
           name: id
@@ -315,6 +315,48 @@ paths:
                 message: Erro interno no servidor
                 code: 500
   /estudante/{id}/ranking-global:
+    post:
+      tags:
+        - ranking_global_estudantes
+      summary: Cria o ranking do estudante globalmente
+      operationId: createGlobalStudentRanking
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID do aluno com o ranking global
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Ranking_global_estudantes"
+      responses:
+        "201":
+          description: Resposta criada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ranking_global_estudantes"
+        "400":
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
     get:
       tags:
         - estudantes
@@ -432,7 +474,7 @@ paths:
     get:
       tags:
         - ranking_global_estudantes
-      summary: Retorna o ranking global dos estudante
+      summary: Retorna o ranking global de todos os estudantes
       operationId: getGlobalStudentRanking
       responses:
         "200":
@@ -582,23 +624,23 @@ paths:
               example:
                 message: Erro interno no servidor
                 code: 500
-  /estudante/{id}/global/pontuação:
+  /escola/{id}/global/pontuação:
     get:
       tags:
         - tentativas
-      summary: Retorna a pontuação total das perguntas que o estudante respondeu corretamente
-      operationId: getStudantTotalPoints
+      summary: Retorna a pontuação total de todos os alunos da escola
+      operationId: getSchoolTotalPoints
       parameters:
         - in: path
           name: id
           required: true
-          description: ID do estudante
+          description: ID da escola
           schema:
             type: integer
             format: int64
       responses:
         "200":
-          description: Pontuação global do estudante
+          description: Pontuação da escola
           content:
             application/json:
               schema:
@@ -606,7 +648,7 @@ paths:
                 items:
                   $ref: "#/components/schemas/Tentativa"
         "404":
-          description: Estudante não encontrado
+          description: Escola não encontrado
           content:
             application/json:
               schema:

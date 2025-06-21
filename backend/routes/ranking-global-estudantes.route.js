@@ -6,10 +6,12 @@ const router = express.Router();
 
 const middleware = require("../middleware");
 
-const rankingGlobalEstudantesController = require("../controllers/ranking-global-estudantes.controller");
+const rankingGlobalEstudantesController = require("../controllers/ranking-global-estudante.controller");
 
 /* Para criar rotas é necessário ir ver ao ficheiro da API para qual tag elas vão ser usadas e como elas estão lá estruturadas. 
 Para as fazer é -> router.<o método>(<"/o endpoit/:<o parâmetro se necessário>">, middleware.checkToken(para utilizar a middleware de autenticação de token), <a const que importa o controller apropriado>.<o id de operação que está no ficheiro da api>)  */
+
+router.post("/estudante/:id/ranking-global", middleware.checkToken, rankingGlobalEstudantesController.createGlobalStudentRanking);
 
 router.get("/estudante/ranking-global", middleware.checkToken, rankingGlobalEstudantesController.getGlobalStudentRanking);
 
