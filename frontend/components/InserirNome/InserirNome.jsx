@@ -130,12 +130,9 @@ const InserirNome = () => {
                                 <ListItemText primary={nome} />
                             </ListItem>
                         ))}
-                        ))}
                         </List>
                     </Box>
                 </Box>
-            </Box>
-        </ThemeProvider>
             </Box>
         </ThemeProvider>
     )
