@@ -1,4 +1,4 @@
-import { Box, Button, Typography, ThemeProvider, createTheme, Grid, ButtonGroup, } from "@mui/material";
+import { Box, Button, Typography, ThemeProvider, createTheme, Grid, ButtonGroup, Link } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import React, { useState } from "react";
 
@@ -178,20 +178,22 @@ const PerguntaLayout = () => {
                         </Grid>
                         {/* Botão */}
                         <Box sx={{ justifyContent: "center", alignItems: "center", display: "flex" }}>
-                            <Button
-                                variant="contained"
-                                sx={{
-                                    height: "70%",
-                                    borderRadius: "20px",
-                                    px: 4,
-                                    backgroundColor: "#F292C4",
-                                    color: "black",
-                                    textTransform: "none",
+                            <Link href="/resultado">
+                                <Button
+                                    variant="contained"
+                                    sx={{
+                                        height: "70%",
+                                        borderRadius: "20px",
+                                        px: 4,
+                                        backgroundColor: "#F292C4",
+                                        color: "black",
+                                        textTransform: "none",
 
-                                }}
-                            >
-                                RESPONDER
-                            </Button>
+                                    }}
+                                >
+                                    RESPONDER
+                                </Button>
+                            </Link>
                         </Box>
                     </Box>
                 </Box>
