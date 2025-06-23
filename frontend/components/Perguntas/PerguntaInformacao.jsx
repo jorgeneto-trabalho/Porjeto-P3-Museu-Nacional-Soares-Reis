@@ -197,8 +197,8 @@ const PerguntaLayout = () => {
                             RESPONDER
                         </Button>
                     </Box>
-                                    </Box>
-                                </Box>
+                </Box>
+            </Box>
         </ThemeProvider>
     );
 };
