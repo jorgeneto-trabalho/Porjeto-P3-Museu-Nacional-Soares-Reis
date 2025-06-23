@@ -1,18 +1,19 @@
 
-import { Box } from '@mui/material'
-import NavBar from '../components/NavBar/NavBar'
-import CodigoVerificacao from '../components/VerificacaoCodigo/VerificacaoCodigo'
+import { createContext } from 'react';
+import { Outlet } from 'react-router-dom';
 
-const StartingPage = () => {
+const Nicknames = createContext();
+
+const Page = () => {
+    const nomes = []
     return (
         <>
-            <Box sx={{ flexGrow: 1 }}>
-                <NavBar />
-                <CodigoVerificacao />
-            </Box>
+            <Nicknames.Provider value={ nomes }>
+                <Outlet />
+            </Nicknames.Provider>
         </>
     )
 }
 
-export default StartingPage
+export default Page
 

@@ -1,5 +1,5 @@
 import { Box, Button, Container, List, ListItem, ListItemText, TextField, Typography, createTheme, ThemeProvider, Input, Link } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 const theme = createTheme({
   palette: {
@@ -11,29 +11,9 @@ const theme = createTheme({
 
 
 /*Inserir uma const Jogadores que insere o nome dos participantes deste quiz*/ 
-const InserirNome = () => {
-
-    const [linkResumo, setLinkResumo] = useState("#");
-    const [nome, setNome] = useState("");
+const Resumo = () => {
     const [nomes, setNomes] = useState([]);
-    const [erro, setErro] = useState(false);
-
-    const RegistarNickname = () => {
-        const nomeLimpo = nome.trim();
-        if (nome.trim() === "") {
-            setErro(true);
-            return;
-        } else{
-            setLinkResumo("/resumo");
-        }
-        setNomes([...nomes, nomeLimpo]);
-        setNome("");
-        setErro(false);
-    };
-
-
-
-
+    
     return (
         <ThemeProvider theme = {theme}>
             <Box
@@ -51,7 +31,6 @@ const InserirNome = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     p: 2,
-                    flexGrow: 1
                 }}
             >
                 <Box 
@@ -70,38 +49,22 @@ const InserirNome = () => {
                 >
                     {/*Parte esquerda -Formulário*/}
                     <Box sx={{flex: 0.55, p: 4, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",}}>
-                        <Typography variant="h4" sx={{mb: 8, fontWeight: "bold", color: "#3E5376", textAlign: "center"}}>
-                            NICKNAME
+                        <Typography variant="h4" sx={{mb: 3, fontWeight: "bold", color: "#3E5376", textAlign: "center"}}>
+                            RESUMO
                         </Typography>
 
-                        <Input
-                            value={nome}
-                            onChange={(e) => setNome(e.target.value)}
-                            color="primary"
-                            placeholder="Introduza o Nickname"
-                            sx={{ width: "80%", mb: 1 }}
-                        />
-                        {erro && (
-                        <Typography
-                            variant="caption"
-                            sx={{ color: "red", mb: 2, alignSelf: "flex-start", pl: "10%" }}
-                        >
-                            O nickname não pode estar vazio
-                        </Typography>
-                        )}
-
-                        <Typography variant="body2" sx={{ mb: 3, textAlign: "center", color: "#34495e" }}>
-                            Podes ser criativo, mas não demais.
+                        <Typography variant="body1" sx={{ mb: 8, width: "70%", textAlign: "left", color: "#34495e", justifyContent: "left"}}>
+                            Este quiz será em redor da obra que vai pelo nome “As Visitas”. Aqui se encontram X perguntas que testaram a tua atenção durante a expedição realizada. 
                         </Typography>
 
                         <Box textAlign="center">
-                            <Link href= {linkResumo}>
+                            <Link href="/pergunta">
                                 <Button
                                     variant="contained"
-                                    onClick={RegistarNickname}
+                                    
                                     sx={{ borderRadius: "20px", px: 4, backgroundColor: "#3E5376", color: "B2CFFF", textTransform: "none"}}
                                 >
-                                    Entrar
+                                    Começar
                                 </Button>
                             </Link>
                         </Box>
@@ -138,4 +101,4 @@ const InserirNome = () => {
     )
 }
 
-export default InserirNome
+export default Resumo
