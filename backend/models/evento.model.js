@@ -4,9 +4,10 @@
 const sequelize = require("sequelize");
 const conexao = require("../config/database");
 
+
 /*Primeiro criamos uma const <nome do model> = conexao.define(o resto vai ser escrito dentro destes parênteses) */
-const Estudantes = conexao.define(
-    "estudantes", /*<"Nome da tabela">, */
+const Eventos = conexao.define(
+    "eventos", /*<"Nome da tabela">, */
     {
         /*Aqui adicionamos os parâmetros da tabela. Não é necessário adicionar o createdAt e o updatedAt */
         id: {
@@ -18,17 +19,20 @@ const Estudantes = conexao.define(
             type: sequelize.STRING,
             allowNull: false /*Define se este parâmetro pode ser nulo*/
         },
-        token_acesso: {
+        codigo_qr: {
             type: sequelize.STRING,
             allowNull: false
         },
-
+        data_evento: {
+            type: sequelize.DATEONLY,
+            allowNull: false
+        },
     },
     {
-        tableName: "estudantes", /*O nome da tabela*/
+        tableName: "eventos", /*O nome da tabela*/
         timestamps: true /*Adiciona os timestamps*/
     }
 ); /*Fim dos parênteses*/
 
 /*Por último, só precisamos de fazer exportação do model*/
-module.exports = Estudantes;
+module.exports = Eventos;

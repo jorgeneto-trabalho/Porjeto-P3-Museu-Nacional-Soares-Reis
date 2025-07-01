@@ -10,7 +10,7 @@ const theme = createTheme({
 });
 
 
-{/*Inserir uma const Jogadores que insere o nome dos participantes deste quiz*/ }
+/*Inserir uma const Jogadores que insere o nome dos participantes deste quiz*/ 
 const Resumo = () => {
     const [nomes, setNomes] = useState([]);
     
@@ -58,7 +58,7 @@ const Resumo = () => {
                         </Typography>
 
                         <Box textAlign="center">
-                            <Link href="/resumo">
+                            <Link href="/pergunta">
                                 <Button
                                     variant="contained"
                                     

@@ -21,7 +21,7 @@ router.delete("/estudante/:id", middleware.checkToken, estudanteController.delet
 
 router.get("/estudante/:nome", middleware.checkToken, estudanteController.getStudentByName);
 
-router.get("/estudante/:id/escola", middleware.checkToken, estudanteController.getStudantSchool);
+router.get("/estudante/:id/escola", middleware.checkToken, estudanteController.getStudentSchool);
 
 router.get("/estudante/:id/ranking-evento", middleware.checkToken, estudanteController.getStudentEventRanking);
 

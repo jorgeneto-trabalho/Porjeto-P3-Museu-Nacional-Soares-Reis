@@ -1,5 +1,5 @@
 import { Box, Button, Container, List, ListItem, ListItemText, TextField, Typography, createTheme, ThemeProvider, Input, Link } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 const theme = createTheme({
   palette: {
@@ -10,8 +10,10 @@ const theme = createTheme({
 });
 
 
-{/*Inserir uma const Jogadores que insere o nome dos participantes deste quiz*/ }
+/*Inserir uma const Jogadores que insere o nome dos participantes deste quiz*/ 
 const InserirNome = () => {
+
+    const [linkResumo, setLinkResumo] = useState("#");
     const [nome, setNome] = useState("");
     const [nomes, setNomes] = useState([]);
     const [erro, setErro] = useState(false);
@@ -21,6 +23,8 @@ const InserirNome = () => {
         if (nome.trim() === "") {
             setErro(true);
             return;
+        } else{
+            setLinkResumo("/resumo");
         }
         setNomes([...nomes, nomeLimpo]);
         setNome("");
@@ -47,6 +51,7 @@ const InserirNome = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     p: 2,
+                    flexGrow: 1
                 }}
             >
                 <Box 
@@ -90,7 +95,7 @@ const InserirNome = () => {
                         </Typography>
 
                         <Box textAlign="center">
-                            <Link href="/resumo">
+                            <Link href= {linkResumo}>
                                 <Button
                                     variant="contained"
                                     onClick={RegistarNickname}

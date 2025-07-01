@@ -1,18 +1,18 @@
-import { Box, Button, Typography, ThemeProvider, createTheme,} from "@mui/material";
+import { Box, Button, Typography, ThemeProvider, createTheme, Grid, ButtonGroup, Link } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import React, { useState } from "react";
 
 const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#3f50b5",
+    palette: {
+        primary: {
+            main: "#3f50b5",
+        },
     },
-  },
 });
 
 const PerguntaLayout = () => {
-    const [perguntaAtual] = useState(0);
-    
+    const [respostaSelecionada, setrespostaSelecionada] = useState(0);
+
     return (
         <ThemeProvider theme={theme}>
             <Box
@@ -29,7 +29,6 @@ const PerguntaLayout = () => {
                     display: "flex",
                     justifyContent: "left",
                     alignItems: "center",
-
                 }}
             >
                 {/*sidebar*/}
@@ -50,28 +49,27 @@ const PerguntaLayout = () => {
                         gap: 1,
                         p: 12,
                         position: "relative"
-                        
+
                     }}
                 >
                     <Box
                         sx={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "4px",
-                        height: "100%",
-                        backgroundColor: "black",
-                        borderRadius: "10px 0 0 10px",
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "4px",
+                            height: "100%",
+                            backgroundColor: "black",
+                            borderRadius: "10px 0 0 10px",
                         }}
                     />
-                    
+
                     <Typography
                         variant="h4"
                         sx={{
-                            mb: 3, 
-                            fontWeight: "bold", 
-                            color: "#3E5376", 
-                            color: "black",
+                            mb: 3,
+                            fontWeight: "bold",
+                            color: "#3E5376",
                             textAlign: "left",
                             letterSpacing: "6px"
                         }}
@@ -91,7 +89,6 @@ const PerguntaLayout = () => {
                                 backgroundColor: "#fff",
                                 boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
                                 borderLeft: "7px solid rgba(0,0,0,0.1)",
-                                borderLeft: perguntaAtual === i ? "7px solid black" : "7px solid rgba(0,0,0,0.1)",
                             }}
                         >
 
@@ -129,77 +126,79 @@ const PerguntaLayout = () => {
                         alignItems: "left",
                     }}
                 >
-                    <Box sx={{height: "90%"}}>
+                    <Box sx={{ height: "90%", display: "flex", flexDirection: "column" }}>
                         {/* Pergunta */}
                         <Typography
                             variant="h4"
                             sx={{
-                            fontWeight: "bold",
-                            textAlign: "center",
-                            mb: "8%",
-                            maxWidth: "100%",
-                            color: "black",
-                            textAlign: "left",
-                            justifyContent: "top",
+                                fontWeight: "bold",
+                                textAlign: "center",
+                                mb: "8%",
+                                maxWidth: "100%",
+                                color: "black",
+                                justifyContent: "top",
                             }}
                         >
                             Qual destas afirmações sobre o Museu Nacional Soares dos Reis é verdadeira?
                         </Typography>
 
                         {/* Opções */}
-                        <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%", maxWidth: "100%" }}>
-                            {[
-                            "Foi fundado por Dom Pedro IV e é exclusivamente dedicado à arte contemporânea portuguesa.",
-                            "Está localizado em Lisboa e ocupa o antigo Palácio de Belém.",
-                            "É o museu público mais antigo de Portugal e está sediado no Porto.",
-                            "É um museu ao ar livre com esculturas modernas espalhadas por jardins botânicos.",
-                            ].map((opcao, idx) => (
-                            <Box
-                                key={idx}
+                        <Grid>
+                            <ButtonGroup sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%", maxWidth: "100%" }}>
+                                {[
+                                    "Foi fundado por Dom Pedro IV e é exclusivamente dedicado à arte contemporânea portuguesa.",
+                                    "Está localizado em Lisboa e ocupa o antigo Palácio de Belém.",
+                                    "É o museu público mais antigo de Portugal e está sediado no Porto.",
+                                    "É um museu ao ar livre com esculturas modernas espalhadas por jardins botânicos.",
+                                ].map((opcao, idx) => (
+                                    <Box
+                                        key={idx}
+                                        sx={{
+                                            border: "2px solid black",
+                                            borderRadius: "0 20px 20px 0",
+                                            px: 2,
+                                            py: 1.5,
+                                            fontWeight: 500,
+                                            backgroundColor: "transparent",
+                                            borderLeft: "5px solid black",
+                                            cursor: "pointer",
+                                            textAlign: "left",
+                                            color: "black",
+                                            "&:hover": {
+                                                background: "rgba(253, 253, 253, 0.64)",
+                                                borderLeft: "2px solid black"
+                                            },
+                                        }}
+                                        onClick={() => setrespostaSelecionada({ idx })}
+                                    >
+                                        {opcao}
+                                    </Box>
+                                ))}
+                            </ButtonGroup>
+                        </Grid>
+                        {/* Botão */}
+                        <Box sx={{ justifyContent: "center", alignItems: "center", display: "flex" }}>
+                            <Link href="/resultado">
+                                <Button
+                                    variant="contained"
+                                    sx={{
+                                        height: "70%",
+                                        borderRadius: "20px",
+                                        px: 4,
+                                        backgroundColor: "#F292C4",
+                                        color: "black",
+                                        textTransform: "none",
 
-                                sx={{
-                                    border: "2px solid black",
-                                    borderRadius: "0 20px 20px 0",
-                                    px: 2,
-                                    py: 1.5,
-                                    fontWeight: 500,
-                                    backgroundColor: "transparent",
-                                    borderLeft: "5px solid black",
-                                    cursor: "pointer",
-                                    textAlign: "left",
-                                    color: "black",
-                                    "&:hover": {
-                                        background: "rgba(253, 253, 253, 0.64)",
-                                        borderLeft: "2px solid black"
-                                    },
-                                }}
-                            >
-                                {opcao}
-                            </Box>
-                            ))}
+                                    }}
+                                >
+                                    RESPONDER
+                                </Button>
+                            </Link>
                         </Box>
-                    </Box>
-
-                    {/* Botão */}
-                    <Box sx={{height: "10%", justifyContent: "center",alignItems: "center", display: "flex",}}>
-                        <Button
-                            variant="contained"    
-                            sx={{
-                                height: "70%",
-                                borderRadius: "20px",
-                                px: 4, 
-                                backgroundColor: "#F292C4", 
-                                color: "black", 
-                                textTransform: "none",
-                                
-                            }}
-                        >
-                            RESPONDER
-                        </Button>
                     </Box>
                 </Box>
             </Box>
-        </ThemeProvider>
+        </ThemeProvider >
     );
 };
 

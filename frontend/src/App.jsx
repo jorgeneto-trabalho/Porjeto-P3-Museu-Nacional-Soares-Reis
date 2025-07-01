@@ -1,23 +1,25 @@
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
-import StartingPage from '../pages'
-import NamingRoom from '../pages/inserir-nome'
-import ResumoPage from '../pages/resumo'
-import Pergunta from '../pages/pergunta'
-import ResultadoPage from "../pages/resultado";
+import Page from '../pages/index'
+import CodigoVerificacao from '../components/VerificacaoCodigo/VerificacaoCodigo'
+import InserirNome from '../components/InserirNome/InserirNome'
+import SelecionarPergunta from '../components/Perguntas/Pergunta'
+import Resumo from '../components/Resumo/Resumo'
+import Resultado from '../components/Resultado/Resultado'
+
 
 function App() {
-
 
   return (
     <>
       <Routes>
-        <Route path='/' element={<StartingPage />} />
-        <Route path='/inserir-nome' element={<NamingRoom />} />
-        <Route path='/resumo' element={<ResumoPage />} />
-        <Route path='/pergunta' element={<Pergunta />} />
-        <Route path='/resultado' element={<ResultadoPage />} />
-     
+        <Route element={<Page />} >
+          <Route path='/' element={<CodigoVerificacao />} />
+          <Route path='/inserir-nome' element={<InserirNome />} />
+          <Route path='/resumo' element={<Resumo />} />
+          <Route path='/resultado' element={<Resultado />} />
+          <Route path='/pergunta' element={<SelecionarPergunta />} />
+        </Route>
       </Routes>
     </>
   )
