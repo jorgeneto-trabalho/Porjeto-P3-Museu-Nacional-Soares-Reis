@@ -1,50 +1,51 @@
+version: "3.8"
 services:
-  node:
-    container_name: quiz_museu_soares_reis
-    image: node:latest
-    working_dir: /app
-    ports:
-      - '8000:8000'
-    restart: 'always'
-    depends_on:
-      - mysql
-    volumes:
-      - ./node_app:/app
-    networks:
-      - quiz_museu_soares_reis_network
   mysql:
     container_name: quiz_museu_soares_reis_mysql
     image: mysql:latest
-    restart: 'always'
+    restart: unless_stopped
     ports:
       - '3306:3306'
     environment:
       MYSQL_ROOT_PASSWORD: 123
-      MYSQL_DATABASE: namp db
-      MYSQL_USER: namp user 
-      MYSQL_PASSWORD: namp pass
+      MYSQL_DATABASE: projeto_jt
     volumes:
       - mysql_data:/var/lib/mysql
-    networks:
-      - quiz_museu_soares_reis_network
   phpmyadmin:
     container_name: quiz_museu_soares_reis_phpmyadmin
     image: phpmyadmin/phpmyadmin:latest
-    restart: 'always'
+    restart: unless_stopped
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: 123
     ports:
       - '8081:80'
     depends_on:
       - mysql
-    networks:
-      - quiz_museu_soares_reis_network
 
-networks:
-  quiz_museu_soares_reis_network:
-    driver: bridge
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=mysql
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
 
 volumes:
   node_app:

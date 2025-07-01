@@ -1,7 +1,8 @@
 FROM node:18
-WORKDIR /usr/app
+WORKDIR /app
 COPY ./package.json ./
+COPY ./package-lock.json ./
 RUN npm install
-COPY ./ ./
-EXPOSE 5000
+COPY . .
+EXPOSE 3000
 CMD ["npm", "run", "dev"]
