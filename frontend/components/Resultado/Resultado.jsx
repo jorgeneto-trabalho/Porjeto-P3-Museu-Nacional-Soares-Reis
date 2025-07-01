@@ -75,6 +75,7 @@ const Resultado = () => {
               letterSpacing: 6,
               color: primaryColor,
               textAlign: "center",
+              width: "90%"
             }}
           >
             {title}
