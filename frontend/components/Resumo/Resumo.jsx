@@ -58,7 +58,7 @@ const Resumo = () => {
                         </Typography>
 
                         <Box textAlign="center">
-                            <Link href="/pergunta">
+                            <Link href="/pergunta/semImagem">
                                 <Button
                                     variant="contained"
                                     

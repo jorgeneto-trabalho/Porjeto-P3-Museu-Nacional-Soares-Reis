@@ -15,7 +15,7 @@ const InserirNome = () => {
 
     const [linkResumo, setLinkResumo] = useState("#");
     const [nome, setNome] = useState("");
-    const [nomes, setNomes] = useState([]);
+    const [nomes, setNomes] = useState(["teste", ]);
     const [erro, setErro] = useState(false);
 
     const RegistarNickname = () => {

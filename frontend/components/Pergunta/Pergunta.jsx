@@ -1,12 +1,10 @@
 
-import PerguntaLayout from "./PerguntaInformacao"
-
-
+import { Outlet } from "react-router-dom"
 
 const SelecionarPergunta = () => {
     return (
         <>
-            <PerguntaLayout />
+            <Outlet />
         </>
     )
 }

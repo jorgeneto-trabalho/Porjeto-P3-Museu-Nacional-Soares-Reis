@@ -2,19 +2,11 @@ import { Box, Button, Typography, ThemeProvider, createTheme, Grid, ButtonGroup,
 import { blue } from "@mui/material/colors";
 import React, { useState } from "react";
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: "#3f50b5",
-        },
-    },
-});
-
-const PerguntaLayout = () => {
+const PerguntaSemImagem = () => {
     const [respostaSelecionada, setrespostaSelecionada] = useState(0);
 
     return (
-        <ThemeProvider theme={theme}>
+        <>
             <Box
                 sx={{
                     position: "fixed",
@@ -178,7 +170,7 @@ const PerguntaLayout = () => {
                         </Grid>
                         {/* Botão */}
                         <Box sx={{ justifyContent: "center", alignItems: "center", display: "flex" }}>
-                            <Link href="/resultado">
+                            <Link href="/pergunta/perguntaImagemH">
                                 <Button
                                     variant="contained"
                                     sx={{
@@ -198,8 +190,8 @@ const PerguntaLayout = () => {
                     </Box>
                 </Box>
             </Box>
-        </ThemeProvider >
+        </>
     );
 };
 
-export default PerguntaLayout;
+export default PerguntaSemImagem;
