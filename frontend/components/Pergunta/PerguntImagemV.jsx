@@ -2,7 +2,7 @@ import { Box, Button, Typography, ThemeProvider, createTheme, Grid, ButtonGroup,
 import { blue } from "@mui/material/colors";
 import React, { useState } from "react";
 
-const PerguntaImagemH = () => {
+const PerguntaImagemV = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -17,7 +17,7 @@ const PerguntaImagemH = () => {
                     left: 0,
                     width: "100%",
                     height: "100%",
-                    backgroundImage: "url('/bglaranja.jpg')",
+                    backgroundImage: "url('/bgverde.jpg')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     display: "flex",
@@ -105,8 +105,8 @@ const PerguntaImagemH = () => {
                 {/*conteudo*/}
                 <Box
                     sx={{
-                        width: "55vw",
-                        height: "60vh",
+                        width: "55%",
+                        height: "60%",
                         background: "rgba(253, 253, 253, 0.27)",
                         backdropFilter: "blur(10px)",
                         WebkitBackdropFilter: "blur(10px)",
@@ -116,67 +116,39 @@ const PerguntaImagemH = () => {
                         borderLeft: "none",
                         p: 10,
                         display: "flex",
-                        flexDirection: "column",
+                        flexDirection: "row",
                         alignItems: "left",
                     }}
                 >
-
-
-
-                    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                        <Button onClick={handleOpen} sx={{ maxWidth: "40%", maxHeight: "40%" }} > {/* <<< Para alterar o tamanho da imagem, muda-se aqui */}
-                            <img src="/Casa Brancas de Capri_HenriquePousao.jpg" width={"100%"} height={"auto"} />
-                            <Modal
-                                onClose={handleClose}
-                                open={open}
-                                aria-labelledby="modal-modal-title"
-                                aria-describedby="modal-modal-description"
-                                sx={{
-                                    backdropFilter: "blur(5px)",
-                                    WebkitBackdropFilter: "blur(5px)"
-                                }}
-                            >
-                                <Box
-                                    sx={{
-                                        position: 'absolute',
-                                        top: '50%',
-                                        left: '50%',
-                                        transform: 'translate(-50%, -50%)',
-                                        width: 400,
-
-
-                                    }}>
-                                    <img src="/Casa Brancas de Capri_HenriquePousao.jpg" height={"auto"} width={"100%"} />
-                                </Box>
-                            </Modal>
-                        </Button>
+                    <Box sx={{ display: "flex", flexDirection: "column" }}>
                         {/* Pergunta */}
                         <Typography
-                            variant="h4"
+                            variant="h6"
                             sx={{
                                 fontWeight: "bold",
-                                textAlign: "center",
-                                mb: "8%",
-                                maxWidth: "100%",
+                                textAlign: "left",
+                                mb: "4%",
+                                maxWidth: "80%",
                                 color: "black",
                                 justifyContent: "top",
                             }}
                         >
-                            Quem é o autor da obra aqui presente
+                            Qual das seguintes afirmações sobre o retrato de Aurélio de Sousa, exposto no Museu Nacional Soares dos Reis, é verdadeira?
                         </Typography>
 
                         {/* Opções */}
-                        <Grid container sx={{ gap: 2, width: "100%", maxWidth: "100%" }}>
+                        <Grid container sx={{ gap: 1, width: "100%", maxWidth: "100%" }}>
                             {[
-                                "Henrique Cesar de Araujo Possão",
-                                "Maria Aurólia Martins de Souza",
-                                "António Soares dos Reis",
-                                "Augusto Gomes",
+                                "A figura está de perfil e destaca-se pela paisagem natural ao fundo.",
+                                "A composição simétrica e frontal destaca-se pelo casaco vermelho e fundo negro.",
+                                "A obra retrata uma paisagem familiar com múltiplas figuras femeninas.",
+                                "Foi pintada por sua irmã, Sofia de Souza e representa uma camponesa portuguesa.",
                             ].map((opcao, idx) => (
                                 <Grid item
                                     key={idx}
-                                    size={5}
                                     sx={{
+                                        maxWidth: "90%",
+                                        minWidth: "90%",
                                         border: "2px solid black",
                                         borderRadius: "0 20px 20px 0",
                                         px: 2,
@@ -200,7 +172,7 @@ const PerguntaImagemH = () => {
                         </Grid>
                         {/* Botão */}
                         <Box sx={{ justifyContent: "center", alignItems: "center", display: "flex" }}>
-                            <Link href="/pergunta/perguntaImagemV">
+                            <Link href="/resultado">
                                 <Button
                                     variant="text"
                                     sx={{
@@ -216,11 +188,38 @@ const PerguntaImagemH = () => {
                                 </Button>
                             </Link>
                         </Box>
+
                     </Box>
+                    <Button onClick={handleOpen} sx={{ maxWidth: "70%", maxHeight: "70%" }} > {/* <<< Para alterar o tamanho da imagem, muda-se aqui */}
+                        <img src="/Autorretrato_AureliaSouza.jpg" width={"auto"} height={"100%"}/>
+                        <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                            sx={{
+                                backdropFilter: "blur(5px)",
+                                WebkitBackdropFilter: "blur(5px)"
+                            }}
+                        >
+                            <Box sx={{
+                                position: 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                width: 400,
+
+
+                            }}>
+                                <img src="/Autorretrato_AureliaSouza.jpg" height={"auto"} width={"100%"} />
+                            </Box>
+                        </Modal>
+                    </Button>
                 </Box>
-            </Box>
+
+            </Box >
         </>
     );
 };
 
-export default PerguntaImagemH;
+export default PerguntaImagemV;

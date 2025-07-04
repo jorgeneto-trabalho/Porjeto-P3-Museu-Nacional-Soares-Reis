@@ -10,6 +10,7 @@ import ErroPage from '../components/ErroPage/ErroPage'
 import LoadPage from '../components/LoadPage/LoadPage'
 import PerguntaSemImagem from '../components/Pergunta/PerguntaInformacao'
 import PerguntaImagemH from '../components/Pergunta/PerguntaImagemH'
+import PerguntaImagemV from '../components/Pergunta/PerguntImagemV'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path='/pergunta' element={<SelecionarPergunta />} >
             <Route path='/pergunta/semImagem' element={<PerguntaSemImagem/>} />
             <Route path='/pergunta/perguntaImagemH' element={<PerguntaImagemH/>} />
+            <Route path='/pergunta/perguntaImagemV' element={<PerguntaImagemV/>} />
           </Route>
           <Route path='*' element={<ErroPage />} />
           <Route path='/load' element={<LoadPage />} />
