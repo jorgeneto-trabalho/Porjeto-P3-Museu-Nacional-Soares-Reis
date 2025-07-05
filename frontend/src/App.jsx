@@ -11,6 +11,8 @@ import LoadPage from '../components/LoadPage/LoadPage'
 import PerguntaSemImagem from '../components/Pergunta/PerguntaInformacao'
 import PerguntaImagemH from '../components/Pergunta/PerguntaImagemH'
 import PerguntaImagemV from '../components/Pergunta/PerguntImagemV'
+import Ranking from '../components/Ranking/Ranking'
+
 
 function App() {
 
@@ -29,6 +31,9 @@ function App() {
           </Route>
           <Route path='*' element={<ErroPage />} />
           <Route path='/load' element={<LoadPage />} />
+
+
+          <Route path='/ranking' element={<Ranking />}/>
         </Route>
       </Routes>
     </>
