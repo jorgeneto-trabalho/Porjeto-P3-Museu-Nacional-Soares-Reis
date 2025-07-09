@@ -113,9 +113,7 @@ const RankingPage = () => {
                                         borderTopRightRadius: 2,
                                         display: "flex",
                                         alignItems: "flex-start",
-                                        justifyContent: "center",
-                                        borderTopLeftRadius: "20px",
-                                        borderTopRightRadius: "20px"
+                                        justifyContent: "center"
                                     }}
                                 >
 

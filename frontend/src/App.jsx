@@ -11,8 +11,10 @@ import LoadPage from '../components/LoadPage/LoadPage'
 import PerguntaSemImagem from '../components/Pergunta/PerguntaInformacao'
 import PerguntaImagemH from '../components/Pergunta/PerguntaImagemH'
 import PerguntaImagemV from '../components/Pergunta/PerguntImagemV'
-import Ranking from '../components/Ranking/Ranking'
-
+import RankingPage from '../components/RankingPage/RankingPage'
+import Backoffice from '../components/BackOffice/Backoffice'
+import BODesafios from '../components/BackOffice/BODesafios'
+import BOEventos from '../components/BackOffice/BOEventos'
 
 function App() {
 
@@ -25,15 +27,17 @@ function App() {
           <Route path='/resumo' element={<Resumo />} />
           <Route path='/resultado' element={<Resultado />} />
           <Route path='/pergunta' element={<SelecionarPergunta />} >
-            <Route path='/pergunta/semImagem' element={<PerguntaSemImagem/>} />
-            <Route path='/pergunta/perguntaImagemH' element={<PerguntaImagemH/>} />
-            <Route path='/pergunta/perguntaImagemV' element={<PerguntaImagemV/>} />
+            <Route path='/pergunta/semImagem' element={<PerguntaSemImagem />} />
+            <Route path='/pergunta/perguntaImagemH' element={<PerguntaImagemH />} />
+            <Route path='/pergunta/perguntaImagemV' element={<PerguntaImagemV />} />
           </Route>
           <Route path='*' element={<ErroPage />} />
           <Route path='/load' element={<LoadPage />} />
-
-
-          <Route path='/ranking' element={<Ranking />}/>
+          <Route path='/ranking' element={<RankingPage />} />
+        </Route>
+        <Route element={<Backoffice />} >
+          <Route path='/backoffice/desafios' element={<BODesafios />} />
+          <Route path='/backoffice' element={<BOEventos />} />
         </Route>
       </Routes>
     </>
