@@ -4,6 +4,24 @@ const config = require("./config/config.js");
 const checkToken = (req, res, next) => {
   let token = req.headers["x-access-token"] || req.headers["authorization"];
 
+  
+  if (token && token.startsWith("Bearer ")) {
+    token = token.slice(7);
+  }
+
+  if (!token) {
+    return res.status(401).json({ success: false, message: "Token ausente." });
+  }
+
+ jwt.verify(token, config.secret, (err, decoded) => {
+      if (err) {
+      return res.status(401).json({ success: false, message: "Token inválido." });
+    }
+    req.decoded = decoded;
+    next();
+  });
+};
+  /*
   if (token != undefined && token.startsWith("Bearer ")) {
     token = token.slice(7, token.length);
   }
@@ -26,7 +44,7 @@ const checkToken = (req, res, next) => {
       message: "O token é inválido.",
     });
   }
-};
+};*/
 
 module.exports = {
   checkToken: checkToken,

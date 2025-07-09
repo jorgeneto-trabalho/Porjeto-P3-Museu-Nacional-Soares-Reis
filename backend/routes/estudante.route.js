@@ -1,5 +1,6 @@
 
 /*Cada ficheiro começa com as importações do express, do router, da middleware para autenticação de token quando necessária e do controller relevante.*/
+console.log("Rotas de estudante carregadas");
 
 const express = require("express");
 const router = express.Router();
@@ -11,7 +12,7 @@ const estudanteController = require("../controllers/estudante.controller");
 /* Para criar rotas é necessário ir ver ao ficheiro da API para qual tag elas vão ser usadas e como elas estão lá estruturadas. 
 Para as fazer é -> router.<o método>(<"/o endpoit/:<o parâmetro se necessário>">, middleware.checkToken(para utilizar a middleware de autenticação de token), <a const que importa o controller apropriado>.<o id de operação que está no ficheiro da api>)  */
 
-router.post("/estudante", middleware.checkToken, estudanteController.createStudent);
+router.post("/estudante", estudanteController.createStudent);
 
 router.get("/estudante/:id", middleware.checkToken, estudanteController.getStudentById);
 
@@ -19,7 +20,7 @@ router.put("/estudante/:id", middleware.checkToken, estudanteController.updateSt
 
 router.delete("/estudante/:id", middleware.checkToken, estudanteController.deleteStudent);
 
-router.get("/estudante/:nome", middleware.checkToken, estudanteController.getStudentByName);
+//router.get("/estudante/:nome", middleware.checkToken, estudanteController.getStudentByName);
 
 router.get("/estudante/:id/escola", middleware.checkToken, estudanteController.getStudentSchool);
 

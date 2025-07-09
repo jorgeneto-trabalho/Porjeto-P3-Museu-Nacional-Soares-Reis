@@ -31,8 +31,6 @@ function App() {
           </Route>
           <Route path='*' element={<ErroPage />} />
           <Route path='/load' element={<LoadPage />} />
-
-
           <Route path='/ranking' element={<Ranking />}/>
         </Route>
       </Routes>
