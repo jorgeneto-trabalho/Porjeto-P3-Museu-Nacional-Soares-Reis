@@ -1,49 +1,31 @@
 /*Primeiro, a importação de todos os models necessários*/
 const { where, model } = require("../config/database");
-const { v4: uuid } = require("uuid");
-const jwt = require("jsonwebtoken");
-const config = require("../config/config");
 const { Estudantes, Escolas, Eventos, RankingEventoEstudantes, RankingGlobalEstudantes } = require("../models");
 /*Também temos de adicionar uma const para endpointsFunction*/
-
 const endpointsFunction = {};
 
 /*Começamos com endpointFunction.<id de operações> = async (req, res) => {tudo é escrito dentre destes parênteses} */
 endpointsFunction.createStudent = async (req, res) => {
-  const { nome, id_evento } = req.body;
-
-    if (!id_evento) {
-    return res.status(400).json({ message: "id_evento é obrigatório." });
+    const { nome, token_acesso } = req.body; /*Esta função é para criar um estudante, então temos de ir buscar a informação escrita pelo utilizador utilizando const <nome_variável ou {nome_variáveis, se houverem multiplas} = req.body> */
+    try { /*Utilizamos o try {} e o .create do sequelize*/
+        const dados = await Estudantes.create(
+            {
+                nome: nome,
+                token_acesso: token_acesso,
+            });
+        /*Antes de fecharmos o try{}, adicionamos o res.status(201) para afirmar que o método foi um sucesso*/
+        res.status(201).json({
+            status: "success",
+            message: "Estudante criado com sucesso.",
+            data: dados,
+        });
+    } catch (error) /*Por último, utilizamos os catch para os erros*/ {
+        res.status(404).json({
+            status: "error",
+            message: "Ocorreu um erro ao criar estudante.",
+            data: null,
+        });
     }
-
-  if (!nome) {
-    return res.status(400).json({ status: "error", message: "Nome é obrigatório." });
-  }
-
-  try {
-    const token_acesso = uuid();                          // ① gera código único
-
-    const estudante = await Estudantes.create({ nome, token_acesso, id_evento });
-
-    const accessToken = jwt.sign(                        // ② gera JWT de sessão
-      { id: estudante.id, nome: estudante.nome },
-      config.secret,
-      { expiresIn: Math.floor(config.timer / 1000) }     // 30 min
-    );
-
-    return res.status(201).json({
-      status : "success",
-      message: "Estudante criado com sucesso.",
-      data   : { estudante, token: accessToken }
-    });
-  } catch (error) {
-    console.error(error); 
-    return res.status(500).json({
-      status : "error",
-      message: "Ocorreu um erro ao criar estudante.",
-      data   : null
-    });
-  }
 };
 
 /*Este método usa o findOne para encontrar a informação do estudante utilizando o id*/

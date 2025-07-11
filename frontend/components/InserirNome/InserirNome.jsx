@@ -1,5 +1,5 @@
 import { Box, Button, Container, List, ListItem, ListItemText, TextField, Typography, createTheme, ThemeProvider, Input, Link } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 const theme = createTheme({
   palette: {
@@ -15,56 +15,23 @@ const InserirNome = () => {
 
     const [linkResumo, setLinkResumo] = useState("#");
     const [nome, setNome] = useState("");
-    const [nomes, setNomes] = useState([]);
+    const [nomes, setNomes] = useState(["teste", ]);
     const [erro, setErro] = useState(false);
 
-     useEffect(() => {
-    carregarNomes(); // 1ª vez
-    const id = setInterval(carregarNomes, 15000); // refresco de 15 s
-    return () => clearInterval(id); // limpa ao desmontar
-  }, []);
-
-  const carregarNomes = async () => {
-    try {
-      const resp = await fetch("http://localhost:5000/api/v1/estudante");
-      if (!resp.ok) throw new Error("Falha ao obter nomes");
-      const lista = await resp.json();
-      setNomes(lista.map((e) => e.nome));
-    } catch (e) {
-      console.error(e);
-    }
-  };
+    const RegistarNickname = () => {
+        const nomeLimpo = nome.trim();
+        if (nome.trim() === "") {
+            setErro(true);
+            return;
+        } else{
+            setLinkResumo("/resumo");
+        }
+        setNomes([...nomes, nomeLimpo]);
+        setNome("");
+        setErro(false);
+    };
 
 
-    const registarNickname = async () => {
-    const nomeLimpo = nome.trim();
-    if (!nomeLimpo) {
-      setErro(true);
-      return;
-    }
-
-    try {
-      const resp = await fetch("http://localhost:5000/api/v1/estudante", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome: nomeLimpo, id_evento: 1 }), // ajuste id_evento se necessário
-      });
-      if (!resp.ok) throw new Error("Falha ao gravar nickname");
-      const dados = await resp.json();
-
-      // Actualiza UI localmente
-      setNomes((prev) => [...prev, nomeLimpo]);
-      setNome("");
-      setErro(false);
-      setLinkResumo(`/resumo/${dados.data.estudante.id}`);
-
-      // Se quiseres guardar token para próximas requisições:
-      // localStorage.setItem("token", dados.data.token);
-    } catch (e) {
-      console.error(e);
-      alert("Não foi possível registar o nickname.");
-    }
-  };
 
 
     return (
@@ -128,10 +95,10 @@ const InserirNome = () => {
                         </Typography>
 
                         <Box textAlign="center">
-                            <Link to = "/resumo">
+                            <Link href= {linkResumo}>
                                 <Button
                                     variant="contained"
-                                    onClick={registarNickname}
+                                    onClick={RegistarNickname}
                                     sx={{ borderRadius: "20px", px: 4, backgroundColor: "#3E5376", color: "B2CFFF", textTransform: "none"}}
                                 >
                                     Entrar
