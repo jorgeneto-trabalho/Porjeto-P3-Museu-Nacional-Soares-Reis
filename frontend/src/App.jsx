@@ -35,16 +35,12 @@ function App() {
           </Route>
           <Route path='*' element={<ErroPage />} />
           <Route path='/load' element={<LoadPage />} />
-<<<<<<< HEAD
           <Route path='/ranking' element={<RankingPage />} />
         </Route>
         {/*<Route path='/backoffice' element={<BOLogin />} />*/}
         <Route element={<Backoffice />} >
           <Route path='/backoffice/desafios' element={<BODesafios />} />
           <Route path='/backoffice/eventos' element={<BOEventos />} />
-=======
-          <Route path='/ranking' element={<Ranking />}/>
->>>>>>> branch-t-2
         </Route>
       </Routes>
     </>
