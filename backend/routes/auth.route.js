@@ -6,7 +6,10 @@ const authController = require("../controllers/auth.controller");
 
 router.post("/register", authController.register);
 router.post("/login", authController.login);
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch-t-2
 router.post(
   "/refresh-token",
   middleware.checkToken,
@@ -14,6 +17,9 @@ router.post(
 );
 router.post("/logout", middleware.checkToken, authController.logout);
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> branch-t-2
 module.exports = router;

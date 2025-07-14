@@ -33,7 +33,7 @@ endpointsFunction.getChallengeByID = async (req, res) => {
     try {
         const dados = await Desafios.findByPk(id,
             {
-                attribute: [],
+                attributes: ["id", "nome", "descricao"],
             });
         if (!dados) {
             return res.status(404).json({
