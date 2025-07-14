@@ -30,19 +30,12 @@ DesafioPerguntas.belongsTo(Perguntas, {
 Desafios.belongsToMany(Perguntas, {
     through: DesafioPerguntas
 });
-Desafios.hasMany(Eventos);
-
-Escolas.hasOne(Eventos);
-Escolas.hasOne(RankingGlobalEscolas);
 
 Estudantes.belongsTo(Eventos/*Nome da tabela*/, {
     foreignKey: "id_evento",/*Nome da chave na tabela estudantes*/
     targetKey: "id",/*Nome da chave na tabela eventos*/
     as: "participouEm"/*Nome da realção*/
 });
-Estudantes.hasOne(Tentativas);
-Estudantes.hasOne(RankingEventoEstudantes);
-Estudantes.hasOne(RankingGlobalEstudantes);
 
 Eventos.belongsTo(Escolas/*Nome da tabela*/, {
     foreignKey: "id_escola",/*Nome da chave na tabela estudantes*/
@@ -50,13 +43,10 @@ Eventos.belongsTo(Escolas/*Nome da tabela*/, {
     as: "esolasQueParticiparam"/*Nome da realção*/
 });
 Eventos.belongsTo(Desafios, {
-    foreignKey: "id_evento",
+    foreignKey: "id_desafio",
     targetKey: "id",
     as: "desafiosDoEvento"
 });
-Eventos.hasMany(Estudantes);
-Eventos.hasMany(RankingEventoEstudantes);
-Eventos.hasMany(Tentativas);
 
 PerguntaRespostas.belongsTo(Perguntas, {
     foreignKey: "id_pergunta",
@@ -69,7 +59,6 @@ PerguntaRespostas.belongsTo(Respostas, {
     as: "respostaParaARelacaoMM"
 });
 
-Perguntas.hasOne(Tentativas);
 Perguntas.belongsToMany(Respostas, {
     through: PerguntaRespostas
 });
@@ -103,7 +92,6 @@ RankingGlobalEstudantes.belongsTo(Estudantes/*Nome da tabela*/, {
 Respostas.belongsToMany(Perguntas, {
     through: PerguntaRespostas
 });
-Respostas.hasOne(Tentativas);
 
 Tentativas.belongsTo(Estudantes/*Nome da tabela*/, {
     foreignKey: "id_estudante",/*Nome da chave na tabela estudantes*/

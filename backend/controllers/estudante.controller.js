@@ -20,7 +20,7 @@ endpointsFunction.createStudent = async (req, res) => {
             data: dados,
         });
     } catch (error) /*Por último, utilizamos os catch para os erros*/ {
-        res.status(404).json({
+        res.status(500).json({
             status: "error",
             message: "Ocorreu um erro ao criar estudante.",
             data: null,

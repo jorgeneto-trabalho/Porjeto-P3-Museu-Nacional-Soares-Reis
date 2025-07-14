@@ -24,6 +24,7 @@ app.use("/api/v1", require("./routes/ranking-global-escolas.route"));
 app.use("/api/v1", require("./routes/ranking-global-estudantes.route"));
 app.use("/api/v1", require("./routes/resposta.route"));
 app.use("/api/v1", require("./routes/tentativa.route"));
+app.use("/api/v1", require("./routes/auth.route"));
 
 app.listen(app.get("port"), () => {
     console.log("Servidor a correr na porta "+app.get("port"));

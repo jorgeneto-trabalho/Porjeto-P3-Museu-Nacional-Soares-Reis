@@ -23,6 +23,7 @@ endpointsFunction.createSchool = async (req, res) => {
             message: "Ocorreu um erro ao criar a escola.",
             data: null,
         });
+        console.error(error);
     }
 };
 
@@ -50,6 +51,7 @@ endpointsFunction.getSchoolByID = async (req, res) => {
             message: "Ocorreu um erro ao listar a escola.",
             data: null,
         });
+        console.error(error);
     }
 };
 
@@ -84,6 +86,7 @@ endpointsFunction.updateSchool = async (req, res) => {
             message: "Ocorreu um erro ao atualizar escola.",
             data: null,
         });
+        console.error(error);
     }
 };
 
@@ -111,6 +114,7 @@ endpointsFunction.deleteSchool = async (req, res) => {
             message: "Ocorreu um erro ao apagar a escola.",
             data: null,
         });
+        console.error(error);
     }
 };
 
@@ -138,6 +142,7 @@ endpointsFunction.getSchoolByName = async (req, res) => {
             message: "Ocorreu um erro ao listar a escola.",
             data: null,
         });
+        console.error(error);
     }
 };
 
@@ -175,6 +180,7 @@ endpointsFunction.getSchoolStudents = async (req, res) => {
             message: "Ocorreu um erro ao listar os nomes dos estudantes.",
             data: null,
         });
+        console.error(error);
     }
 };
 

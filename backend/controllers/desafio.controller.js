@@ -23,15 +23,17 @@ endpointsFunction.createChallenge = async (req, res) => {
             message: "Ocorreu um erro ao criar o desafio.",
             data: null,
         });
+        console.error(error);
     }
 };
 
 /*Obter um desafio pelo seu id */
 endpointsFunction.getChallengeByID = async (req, res) => {
+    const { id } = req.params;
     try {
-        const dados = await Desafios.findOne(
+        const dados = await Desafios.findByPk(id,
             {
-                where: { id: id },
+                attributes: ["id", "nome", "descricao"],
             });
         if (!dados) {
             return res.status(404).json({
@@ -50,6 +52,7 @@ endpointsFunction.getChallengeByID = async (req, res) => {
             message: "Ocorreu um erro ao listar o desafio.",
             data: null,
         });
+        console.error(error);
     }
 };
 
@@ -86,6 +89,7 @@ endpointsFunction.updateChallenge = async (req, res) => {
             message: "Ocorreu um erro ao atualizar desafio.",
             data: null,
         });
+        console.error(error);
     }
 };
 
@@ -108,6 +112,7 @@ endpointsFunction.deleteChallenge = async (req, res) => {
             message: "Ocorreu um erro ao apagar o desafio.",
             data: null,
         });
+        console.error(error);
     }
 };
 

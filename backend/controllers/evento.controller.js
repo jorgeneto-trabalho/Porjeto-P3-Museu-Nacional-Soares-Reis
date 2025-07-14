@@ -20,18 +20,19 @@ endpointsFunction.createEvent = async (req, res) => {
             data: dados,
         });
     } catch (error) {
-        res.status(404).json({
+        res.status(500).json({
             status: "error",
             message: "Ocorreu um erro ao criar o evento.",
             data: null,
         });
+        console.error(error);
     }
 };
 
 /*Remove um evento pelo id*/
 endpointsFunction.deleteEvent = async (req, res) => {
-    const id = req.params
-    try {
+    const id = req.params;
+    try  {
         const dados = await Eventos.destroy({
             where: { id: id },
         });
@@ -39,7 +40,9 @@ endpointsFunction.deleteEvent = async (req, res) => {
             return res.status(404).json({
                 status: "error",
                 message: "Evento não encontrado.",
+                
             });
+           
         }
         res.status(204).json({
             status: "success",
@@ -52,6 +55,7 @@ endpointsFunction.deleteEvent = async (req, res) => {
             message: "Ocorreu um erro ao listar o evento.",
             data: null,
         });
+        console.error(error);
     }
 };
 
@@ -79,7 +83,9 @@ endpointsFunction.getEventByID = async (req, res) => {
             message: "Ocorreu um erro ao listar o evento.",
             data: null,
         });
+        console.error(error);
     }
+
 };
 
 
@@ -116,6 +122,7 @@ endpointsFunction.updateEvent = async (req, res) => {
             message: "Ocorreu um erro ao atualizar o evento.",
             data: null,
         });
+        console.error(error);
     }
 };
 
@@ -153,6 +160,7 @@ endpointsFunction.getChallengeOfEvent = async (req, res) => {
             message: "Ocorreu um erro ao listar o desafio do evento.",
             data: null,
         });
+        console.error(error);
     }
 };
 
@@ -193,6 +201,7 @@ endpointsFunction.getQuestionsForEvent = async (req, res) => {
             message: "Ocorreu um erro ao listar as perguntas do evento.",
             data: null,
         });
+        console.error(error);
     }
 };
 

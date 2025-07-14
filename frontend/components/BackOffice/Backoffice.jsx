@@ -26,7 +26,7 @@ const Backoffice = () => {
                     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
                         <List>
                             <Grid >
-                                <Link to="/backoffice">
+                                <Link to="/backoffice/eventos">
                                     <Button>
                                         <ListItemText primary={'Eventos'} />
                                     </Button>

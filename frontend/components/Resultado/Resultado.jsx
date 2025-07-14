@@ -121,7 +121,7 @@ const Resultado = () => {
           <Box sx={{ textAlign: "center", mt: 2 }}>
             <Button
               variant="contained"
-              onClick={() => navigate("/pergunta")}
+              onClick={() => navigate("/load")}
               sx={{
                 borderRadius: "20px",
                 px: 4,

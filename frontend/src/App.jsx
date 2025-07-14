@@ -15,6 +15,8 @@ import RankingPage from '../components/RankingPage/RankingPage'
 import Backoffice from '../components/BackOffice/Backoffice'
 import BODesafios from '../components/BackOffice/BODesafios'
 import BOEventos from '../components/BackOffice/BOEventos'
+import BOLogin from '../components/BackOffice/BOLogIn'
+
 
 function App() {
 
@@ -35,9 +37,10 @@ function App() {
           <Route path='/load' element={<LoadPage />} />
           <Route path='/ranking' element={<RankingPage />} />
         </Route>
+        {/*<Route path='/backoffice' element={<BOLogin />} />*/}
         <Route element={<Backoffice />} >
           <Route path='/backoffice/desafios' element={<BODesafios />} />
-          <Route path='/backoffice' element={<BOEventos />} />
+          <Route path='/backoffice/eventos' element={<BOEventos />} />
         </Route>
       </Routes>
     </>
