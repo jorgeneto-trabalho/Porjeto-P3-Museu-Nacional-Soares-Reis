@@ -12,11 +12,9 @@ export const AuthProvider = ({ children }) => {
     const data = await AuthService.login(email, password);
     setToken(data.AccessToken);
   };
-
   const logout = () => {
     setToken(null);
   };
-
   return (
     <AuthContext.Provider value={{ token, login, loginExemplo, logout }}>
       {children}

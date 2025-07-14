@@ -1,6 +1,6 @@
 
 const { where, model } = require("../config/database");
-const { DesafioPerguntas, Perguntas } = require("../models");
+const { DesafioPerguntas, Perguntas, Desafios } = require("../models");
 
 const endpointsFunction = {};
 
@@ -9,13 +9,6 @@ endpointsFunction.getChallengeQuestions = async (req, res) => {
     const { id } = req.params;
     try {
         const dados = await DesafioPerguntas.findAll(
-            {
-                include: {
-                    model: Perguntas,
-                    as: "perguntas",
-                    attribute: []
-                }
-            },
             { where: { id_desafio: id } },
         );
         if (!dados) {
