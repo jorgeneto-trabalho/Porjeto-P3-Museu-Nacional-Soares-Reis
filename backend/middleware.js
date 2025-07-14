@@ -11,9 +11,10 @@ const checkToken = (req, res, next) => {
   if (token) {
     jwt.verify(token, config.secret, (error, decoded) => {
       if (error) {
-        return res.json({
+        console.error("JWT ERROR →", error.message);   
+        return res.status(401).json({
           success: false,
-          message: "Token é inválido",
+          message: "Token inválido ou expirado."
         });
       } else {
         req.decoded = decoded;

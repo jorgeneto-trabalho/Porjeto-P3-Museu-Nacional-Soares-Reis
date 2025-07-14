@@ -28,10 +28,11 @@ endpointsFunction.createChallenge = async (req, res) => {
 
 /*Obter um desafio pelo seu id */
 endpointsFunction.getChallengeByID = async (req, res) => {
+    const { id } = req.params;
     try {
-        const dados = await Desafios.findOne(
+        const dados = await Desafios.findByPk(id,
             {
-                where: { id: id },
+                attribute: ["id", "nome", "descricao"],
             });
         if (!dados) {
             return res.status(404).json({
@@ -50,6 +51,7 @@ endpointsFunction.getChallengeByID = async (req, res) => {
             message: "Ocorreu um erro ao listar o desafio.",
             data: null,
         });
+        console.error(error);
     }
 };
 
