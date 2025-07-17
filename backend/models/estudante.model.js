@@ -18,11 +18,6 @@ const Estudantes = conexao.define(
             type: sequelize.STRING,
             allowNull: false /*Define se este parâmetro pode ser nulo*/
         },
-        token_acesso: {
-            type: sequelize.STRING,
-            allowNull: false
-        },
-
     },
     {
         tableName: "estudantes", /*O nome da tabela*/

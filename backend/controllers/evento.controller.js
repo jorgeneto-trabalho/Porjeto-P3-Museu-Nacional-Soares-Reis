@@ -1,6 +1,6 @@
 
 const { where, model } = require("../config/database");
-const { Eventos, Desafios, Perguntas } = require("../models");
+const { Eventos, Desafios, Perguntas, Estudantes } = require("../models");
 
 const endpointsFunction = {};
 
@@ -32,7 +32,7 @@ endpointsFunction.createEvent = async (req, res) => {
 /*Remove um evento pelo id*/
 endpointsFunction.deleteEvent = async (req, res) => {
     const id = req.params;
-    try  {
+    try {
         const dados = await Eventos.destroy({
             where: { id: id },
         });
@@ -40,9 +40,9 @@ endpointsFunction.deleteEvent = async (req, res) => {
             return res.status(404).json({
                 status: "error",
                 message: "Evento não encontrado.",
-                
+
             });
-           
+
         }
         res.status(204).json({
             status: "success",
@@ -204,5 +204,38 @@ endpointsFunction.getQuestionsForEvent = async (req, res) => {
         console.error(error);
     }
 };
+
+endpointsFunction.getEventStudents = async (req, res) => {
+    const id = req.body;
+    try {
+        const dados = await Estudantes.findAll(
+            {
+                attributes: ["nome"],
+            },
+            {
+                where: { id_evento: id }
+            }
+        );
+        if (!dados) {
+            return res.status(404).json({
+                status: "error",
+                message: "Estudantes não encontrados.",
+                data: null,
+            });
+        }
+        res.status(200).json({
+            status: "success",
+            message: "Estudantes do evento encontrados com sucesso.",
+            data: dados.subjects,
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: "error",
+            message: "Ocorreu um erro ao listar as perguntas do evento.",
+            data: null,
+        });
+        console.error(error);
+    }
+}
 
 module.exports = endpointsFunction;

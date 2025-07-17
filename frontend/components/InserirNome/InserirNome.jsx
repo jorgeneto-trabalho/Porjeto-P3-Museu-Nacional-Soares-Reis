@@ -1,29 +1,52 @@
-import { Box, Button, List, ListItem, ListItemText, Typography, createTheme, ThemeProvider, Input, Link } from "@mui/material";
+import { Box, Button, List, ListItem, ListItemText, Typography, createTheme, ThemeProvider, Input, Link, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#3f50b5',
-        },
-    },
-});
-
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 /*Inserir uma const Jogadores que insere o nome dos participantes deste quiz*/
 const InserirNome = () => {
 
-    const [linkResumo, setLinkResumo] = useState("/resumo");
-    const [nome, setNome] = useState("");
+    const [estudante, setEstudante] = useState({ nome: "", id_evento: "" });
     const [nomes, setNomes] = useState([]);
+    const [success, setSuccess] = useState(false);
     const [erro, setErro] = useState(false);
 
+    const nav = useNavigate();
+
+    const { id } = useParams();
+
     useEffect(() => {
+        axios.get("http://localhost:5000/api/v1/evento/${id}/estudantes")
+            .then((res) => {
+                setNomes({ ...nomes, })
+            })
+    })
+
+
+    const handleNovoEstudante = (e) => {
+        const { nome, value, id } = e.targe;
+        setEstudante({ ...estudante, [nome]: value, [id_evento]: id });
+    }
+
+    const handleNomeSubmit = (e) => {
+        e.preventDefault();
+
+        axios.post("http://localhost:5000/api/v1/estudante", estudante)
+            .then(() => {
+                setSuccess(true);
+                setTimeout(() => nav("/resumo/:id"), 1500);
+            })
+            .catch((error) => setErro(error.response?.data?.message || "Erro ao criar estudante."));
+    }
+
+
+
+    /*useEffect(() => {
         carregarNomes(); // 1ª vez
         const id = setInterval(carregarNomes, 15000); // refresco de 15 s
         return () => clearInterval(id); // limpa ao desmontar
     }, []);
-
+    
     const carregarNomes = async () => {
         try {
             const resp = await fetch("http://localhost:5000/api/v1/estudante");
@@ -34,15 +57,15 @@ const InserirNome = () => {
             console.error(e);
         }
     };
-
-
+    
+    
     const registarNickname = async () => {
         const nomeLimpo = nome.trim();
         if (!nomeLimpo) {
             setErro(true);
             return;
         }
-
+    
         try {
             const resp = await fetch("http://localhost:5000/api/v1/estudante", {
                 method: "POST",
@@ -51,21 +74,31 @@ const InserirNome = () => {
             });
             if (!resp.ok) throw new Error("Falha ao gravar nickname");
             const dados = await resp.json();
-
+    
             // Actualiza UI localmente
             setNomes((prev) => [...prev, nomeLimpo]);
             setNome("");
             setErro(false);
             setLinkResumo(`/resumo/${dados.data.estudante.id}`);
-
+    
             // Se quiseres guardar token para próximas requisições:
             // localStorage.setItem("token", dados.data.token);
         } catch (e) {
             console.error(e);
             alert("Não foi possível registar o nickname.");
         }
-    };
-
+        axios.post("http://localhost:5000/api/v1/estudante", nome)
+            .then((res) => {
+                //console.log(res.data);
+                if (res.data.status) {
+                    setNomes(res.data.data);
+                } else {
+                    setErro("Ocorreu um erro na execução do pedido.");
+                }
+            })
+            .catch((error) => {
+                setErro("Erro na ligação à API. " + error.message);
+            });*/
 
     return (
         <ThemeProvider theme={theme}>
@@ -106,14 +139,17 @@ const InserirNome = () => {
                         <Typography variant="h4" sx={{ mb: 8, fontWeight: "bold", color: "#3E5376", textAlign: "center" }}>
                             NICKNAME
                         </Typography>
-
-                        <Input
-                            value={nome}
-                            onChange={(e) => setNome(e.target.value)}
-                            color="primary"
-                            placeholder="Introduza o Nickname"
-                            sx={{ width: "80%", mb: 1 }}
-                        />
+                        <Box component="form" >
+                            <TextField
+                                label="nome"
+                                name="nome"
+                                value={nome}
+                                onChange={handleNovoEstudante()}
+                                color="primary"
+                                placeholder="Introduza o Nickname"
+                                sx={{ width: "80%", mb: 1 }}
+                            />
+                        </Box>
                         {erro && (
                             <Typography
                                 variant="caption"
@@ -131,7 +167,7 @@ const InserirNome = () => {
                             <Link to={linkResumo}>
                                 <Button
                                     variant="contained"
-                                    onClick={registarNickname}
+                                    onClick={handleNomeSubmit()}
                                     sx={{ borderRadius: "20px", px: 4, backgroundColor: "#3E5376", color: "B2CFFF", textTransform: "none" }}
                                 >
                                     Entrar
@@ -169,6 +205,6 @@ const InserirNome = () => {
             </Box>
         </ThemeProvider>
     )
-}
+};
 
 export default InserirNome

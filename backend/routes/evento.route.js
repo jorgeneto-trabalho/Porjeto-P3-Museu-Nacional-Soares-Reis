@@ -19,6 +19,8 @@ router.get("/evento/:id", middleware.checkToken, eventoController.getEventByID);
 
 router.put("/evento/:id", middleware.checkToken, eventoController.updateEvent);
 
+router.get("/evento/:id/estudantes", eventoController.getEventStudents);
+
 router.get("/evento/:id/desafio", middleware.checkToken, eventoController.getChallengeOfEvent);
 
 router.put("/evento/:id/desafio-perguntas", middleware.checkToken, eventoController.getQuestionsForEvent);

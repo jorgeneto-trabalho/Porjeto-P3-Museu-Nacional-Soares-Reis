@@ -1532,6 +1532,46 @@ paths:
               example:
                 message: Erro interno no servidor
                 code: 500
+  /evento/{id}/estudantes:
+    get:
+      tags:
+        - eventos
+      summary: Retorna os estudantes participantes do evento
+      operationId: getEventStudents
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID do evento
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Estudantes a participar no evento
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Estudante"
+        "404":
+          description: Escola não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Não autorizado
+        "500":
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /desafio:
     post:
       tags:
@@ -2255,10 +2295,6 @@ components:
           description: Chave priméria do evento em que o estudante participou
           items:
             $ref: "#/components/schemas/Evento"
-        token_acesso:
-          type: string
-          description: O token que permite aos alunos ter acesso ao quiz
-          example: 2mortl
         createdAt:
           type: string
           format: date-time
