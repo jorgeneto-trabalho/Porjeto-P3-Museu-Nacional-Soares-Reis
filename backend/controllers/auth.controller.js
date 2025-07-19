@@ -1,5 +1,4 @@
-const sequelize = require("../config/database");
-const User = require("../models/.model");
+const User = require("../models/");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const config = require("../config/config");

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 const PerguntaImagemV = () => {
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => { if (!open) { setOpen(true) } };
     const handleClose = () => setOpen(false);
     const [respostaSelecionada, setrespostaSelecionada] = useState(0);
 
@@ -191,7 +191,7 @@ const PerguntaImagemV = () => {
 
                     </Box>
                     <Button onClick={handleOpen} sx={{ maxWidth: "70%", maxHeight: "70%" }} > {/* <<< Para alterar o tamanho da imagem, muda-se aqui */}
-                        <img src="/Autorretrato_AureliaSouza.jpg" width={"auto"} height={"100%"}/>
+                        <img src="/Autorretrato_AureliaSouza.jpg" width={"auto"} height={"100%"} />
                         <Modal
                             open={open}
                             onClose={handleClose}

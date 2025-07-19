@@ -1,10 +1,9 @@
-import { Box, Button, Typography, ThemeProvider, createTheme, Grid, ButtonGroup, Link, Avatar, Modal } from "@mui/material";
-import { blue } from "@mui/material/colors";
+import { Box, Button, Typography, Grid, Link, Modal } from "@mui/material";
 import React, { useState } from "react";
 
 const PerguntaImagemH = () => {
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => { if (!open) { setOpen(true) } };
     const handleClose = () => setOpen(false);
     const [respostaSelecionada, setrespostaSelecionada] = useState(0);
 

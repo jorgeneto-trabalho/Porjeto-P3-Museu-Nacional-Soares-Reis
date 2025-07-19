@@ -13,4 +13,6 @@ router.post(
 );
 router.post("/logout", middleware.checkToken, authController.logout);
 
+
+
 module.exports = router;

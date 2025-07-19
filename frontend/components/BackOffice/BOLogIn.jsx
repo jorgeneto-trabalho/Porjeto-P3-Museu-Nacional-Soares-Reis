@@ -9,7 +9,7 @@ const theme = createTheme({
   },
 });
 
-const LoginBackoffice = () => {
+const BOLogin = () => {
     return (
         <ThemeProvider theme = {theme}>
             <Box
@@ -171,4 +171,4 @@ const LoginBackoffice = () => {
         </ThemeProvider>
     )}
 
-export default LoginBackoffice
+export default BOLogin

@@ -11,8 +11,11 @@ import LoadPage from '../components/LoadPage/LoadPage'
 import PerguntaSemImagem from '../components/Pergunta/PerguntaInformacao'
 import PerguntaImagemH from '../components/Pergunta/PerguntaImagemH'
 import PerguntaImagemV from '../components/Pergunta/PerguntImagemV'
-import Ranking from '../components/Ranking/Ranking'
-import LoginBackoffice from '../components/LoginBackoffice/LoginBackoffice'
+import RankingPage from '../components/RankingPage/RankingPage'
+import Backoffice from '../components/BackOffice/Backoffice'
+import BODesafios from '../components/BackOffice/BODesafios'
+import BOEventos from '../components/BackOffice/BOEventos'
+import BOLogin from '../components/BackOffice/BOLogin'
 
 
 function App() {
@@ -26,14 +29,18 @@ function App() {
           <Route path='/resumo' element={<Resumo />} />
           <Route path='/resultado' element={<Resultado />} />
           <Route path='/pergunta' element={<SelecionarPergunta />} >
-            <Route path='/pergunta/semImagem' element={<PerguntaSemImagem/>} />
-            <Route path='/pergunta/perguntaImagemH' element={<PerguntaImagemH/>} />
-            <Route path='/pergunta/perguntaImagemV' element={<PerguntaImagemV/>} />
+            <Route path='/pergunta/semImagem' element={<PerguntaSemImagem />} />
+            <Route path='/pergunta/perguntaImagemH' element={<PerguntaImagemH />} />
+            <Route path='/pergunta/perguntaImagemV' element={<PerguntaImagemV />} />
           </Route>
-          <Route path='/backoffice/login' element={<LoginBackoffice />} />
           <Route path='*' element={<ErroPage />} /> 
           <Route path='/load' element={<LoadPage />} />
-          <Route path='/ranking' element={<Ranking />}/>
+          <Route path='/ranking' element={<RankingPage />} />
+        </Route>
+        <Route path='/backoffice' element={<BOLogin />} />
+        <Route element={<Backoffice />} >
+          <Route path='/backoffice/desafios' element={<BODesafios />} />
+          <Route path='/backoffice/eventos' element={<BOEventos />} />
         </Route>
       </Routes>
     </>

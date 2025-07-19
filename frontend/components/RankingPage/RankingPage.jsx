@@ -87,8 +87,6 @@ const RankingPage = () => {
                             p: 0,
                         }}
                     >
-                        
-
                         <BarChartIcon sx={{ position: "absolute", top: 16, right: 16, color: "#FAA300" }} />
 
                         <Box
@@ -113,9 +111,7 @@ const RankingPage = () => {
                                         borderTopRightRadius: 2,
                                         display: "flex",
                                         alignItems: "flex-start",
-                                        justifyContent: "center",
-                                        borderTopLeftRadius: "20px",
-                                        borderTopRightRadius: "20px"
+                                        justifyContent: "center"
                                     }}
                                 >
 
@@ -132,7 +128,6 @@ const RankingPage = () => {
                                             filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.3))",
                                         }}
                                     />
-
                                     {/* nome do utilizador */}
                                     <Typography
                                         variant="caption"
@@ -148,8 +143,7 @@ const RankingPage = () => {
                                             overflow: "hidden",
                                             textOverflow: "ellipsis",
                                             color: "black"
-                                        }}
-                                    >
+                                        }}>
                                         {name}
                                     </Typography>
                                 </Box>
