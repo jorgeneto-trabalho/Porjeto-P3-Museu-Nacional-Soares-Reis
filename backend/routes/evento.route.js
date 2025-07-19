@@ -8,6 +8,8 @@ const middleware = require("../middleware");
 
 const eventoController = require("../controllers/evento.controller");
 
+const authController  = require("../controllers/auth.controller");
+
 /* Para criar rotas é necessário ir ver ao ficheiro da API para qual tag elas vão ser usadas e como elas estão lá estruturadas. 
 Para as fazer é -> router.<o método>(<"/o endpoit/:<o parâmetro se necessário>">, middleware.checkToken(para utilizar a middleware de autenticação de token), <a const que importa o controller apropriado>.<o id de operação que está no ficheiro da api>)  */
 
@@ -24,6 +26,8 @@ router.get("/evento/:id/estudantes", eventoController.getEventStudents);
 router.get("/evento/:id/desafio", middleware.checkToken, eventoController.getChallengeOfEvent);
 
 router.put("/evento/:id/desafio-perguntas", middleware.checkToken, eventoController.getQuestionsForEvent);
+
+router.post("/evento/entrar", authController.enterQrCode);
 
 
 

@@ -1572,6 +1572,50 @@ paths:
               example:
                 message: Erro interno no servidor
                 code: 500
+  /evento/entrar:
+    post:
+      tags:
+        - evento
+      summary: Entrar via o código qr fornecido pelo utilizador
+      security: []  
+      requestBody:
+        description: Código qr para o evento
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                codigo_qr:
+                  type: string
+                  format: string
+      responses:
+        '200':
+          description: Autenticação com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evento'
+        '400':
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Acesso não autorizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                message: Erro interno no servidor
+                code: 500
   /desafio:
     post:
       tags:
@@ -2376,7 +2420,6 @@ components:
       required:
         - id
         - nome
-        - codigo
       type: object
       properties:
         id:
@@ -2388,11 +2431,6 @@ components:
           type: string
           description: Nome do desafio
           example: Tudo sobre as pinturas surrealistas
-        codigo:
-          type: string
-          description: Codigo necessário para aceder ao desafio
-          example: Museu213
-          maxLength: 20
         descricao:
           type: string
           description: Descrição do desfio

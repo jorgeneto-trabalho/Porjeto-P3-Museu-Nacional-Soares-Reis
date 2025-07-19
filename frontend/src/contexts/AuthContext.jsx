@@ -8,15 +8,21 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
 
-  const login = async (email, password) => {
+  /*const login = async (email, password) => {
     const data = await AuthService.login(email, password);
     setToken(data.AccessToken);
   };
   const logout = () => {
     setToken(null);
+  };*/
+
+  const enterQrCode = async (codigo_qr) => {
+    const data = await AuthService.enterQrCode(codigo_qr);
+    setToken(data.AccessToken);
   };
+
   return (
-    <AuthContext.Provider value={{ token, login, loginExemplo, logout }}>
+    <AuthContext.Provider value={{ token, enterQrCode }}>
       {children}
     </AuthContext.Provider>
   );

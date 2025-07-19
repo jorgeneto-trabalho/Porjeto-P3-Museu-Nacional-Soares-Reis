@@ -6,12 +6,14 @@ const endpointsFunction = {};
 
 /*Cria um evento*/
 endpointsFunction.createEvent = async (req, res) => {
-    const { nome, codigo_qr, data_evento } = req.body;
+    const { nome, codigo_qr, data_evento, escola, desafio } = req.body;
     try {
         const dados = await Eventos.create({
             nome: nome,
             codigo_qr: codigo_qr,
-            data_evento: data_evento
+            data_evento: data_evento,
+            id_escola: escola, /*para poder adiconar a escola/desafio com o thunder*/
+            id_desafio: desafio
         });
 
         res.status(201).json({
@@ -87,7 +89,6 @@ endpointsFunction.getEventByID = async (req, res) => {
     }
 
 };
-
 
 /*Faz update da informação de um evento*/
 endpointsFunction.updateEvent = async (req, res) => {

@@ -18,9 +18,9 @@ const InserirNome = () => {
     useEffect(() => {
         axios.get("http://localhost:5000/api/v1/evento/${id}/estudantes")
             .then((res) => {
-                setNomes({ ...nomes, })
-            })
-    })
+                setNomes(res.data);
+            });
+    });
 
 
     const handleNovoEstudante = (e) => {
