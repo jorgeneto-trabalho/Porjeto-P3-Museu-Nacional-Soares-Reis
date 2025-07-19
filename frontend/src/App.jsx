@@ -12,6 +12,7 @@ import PerguntaSemImagem from '../components/Pergunta/PerguntaInformacao'
 import PerguntaImagemH from '../components/Pergunta/PerguntaImagemH'
 import PerguntaImagemV from '../components/Pergunta/PerguntImagemV'
 import Ranking from '../components/Ranking/Ranking'
+import LoginBackoffice from '../components/LoginBackoffice/LoginBackoffice'
 
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
             <Route path='/pergunta/perguntaImagemH' element={<PerguntaImagemH/>} />
             <Route path='/pergunta/perguntaImagemV' element={<PerguntaImagemV/>} />
           </Route>
-          <Route path='*' element={<ErroPage />} />
+          <Route path='/backoffice/login' element={<LoginBackoffice />} />
+          <Route path='*' element={<ErroPage />} /> 
           <Route path='/load' element={<LoadPage />} />
           <Route path='/ranking' element={<Ranking />}/>
         </Route>
