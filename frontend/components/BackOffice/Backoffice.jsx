@@ -19,11 +19,11 @@ const Backoffice = () => {
                 width: 1,
                 height: 1
             }}>
-                <Button onClick={toggleDrawer(true)} sx={{ position: 'absolute', left: 0 }}>
+                <Button onClick={toggleDrawer(true)} sx={{ position: 'absolute', left: 0, color: "black", p: 3 }}>
                     <MenuIcon />
                 </Button>
                 <Drawer open={open} onClose={toggleDrawer(false)}>
-                    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+                    <Box sx={{ width: 250, backgroundColor: "black" }} role="presentation" onClick={toggleDrawer(false)}>
                         <List>
                             <Grid >
                                 <Link to="/backoffice/eventos">
