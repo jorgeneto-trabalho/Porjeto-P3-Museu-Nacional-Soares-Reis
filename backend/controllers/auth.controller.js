@@ -104,7 +104,6 @@ endpointsFunction.refreshToken = async (req, res) => {
 };
 
 endpointsFunction.logout = async (req, res) => {
-<<<<<<< HEAD
   try {
     // Invalida o token no lado do cliente (não há como invalidar um JWT no lado do servidor)
     res.status(200).json({
@@ -132,8 +131,6 @@ endpointsFunction.logout = async (req, res) => {
         console.error(error);
     }
 };*/
->>>>>>> branch-j-2
-
 
 /*Para obter as informações do evento pelo códgio_qr*/
 endpointsFunction.enterQrCode = async (req, res) => {

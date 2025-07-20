@@ -2,7 +2,6 @@
 import { StrictMode } from 'react'
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from 'react-router-dom'
-import { AuthProvider } from "../contexts/AuthContext.jsx";
 import './index.css'
 import App from './App.jsx'
 import { AuthProvider } from './contexts/AuthContext.jsx'
