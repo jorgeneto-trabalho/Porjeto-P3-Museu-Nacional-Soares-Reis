@@ -6,12 +6,12 @@ const endpointsFunction = {};
 
 /*Começamos com endpointFunction.<id de operações> = async (req, res) => {tudo é escrito dentre destes parênteses} */
 endpointsFunction.createStudent = async (req, res) => {
-    const { nome, token_acesso } = req.body; /*Esta função é para criar um estudante, então temos de ir buscar a informação escrita pelo utilizador utilizando const <nome_variável ou {nome_variáveis, se houverem multiplas} = req.body> */
+    const { nome, id_evento } = req.body; /*Esta função é para criar um estudante, então temos de ir buscar a informação escrita pelo utilizador utilizando const <nome_variável ou {nome_variáveis, se houverem multiplas} = req.body> */
     try { /*Utilizamos o try {} e o .create do sequelize*/
         const dados = await Estudantes.create(
             {
                 nome: nome,
-                token_acesso: token_acesso,
+                id_evento: id_evento,
             });
         /*Antes de fecharmos o try{}, adicionamos o res.status(201) para afirmar que o método foi um sucesso*/
         res.status(201).json({

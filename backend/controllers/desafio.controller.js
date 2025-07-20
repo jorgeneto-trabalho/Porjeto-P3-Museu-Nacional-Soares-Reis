@@ -4,11 +4,10 @@ const endpointsFunction = {};
 
 /* Cria um desafio*/
 endpointsFunction.createChallenge = async (req, res) => {
-    const { nome, codigo, descricao } = req.body;
+    const { nome, descricao } = req.body;
     try {
         const dados = await Desafios.create({
             nome: nome,
-            codigo: codigo,
             descricao: descricao
         });
 
@@ -59,13 +58,12 @@ endpointsFunction.getChallengeByID = async (req, res) => {
 /*Faz update da informação do desafio*/
 endpointsFunction.updateChallenge = async (req, res) => {
     const { id } = req.params;
-    const { nome, codigo, descricao } = req.body;
+    const { nome, descricao } = req.body;
 
     try {
         const dados = await Desafios.update(
             {
                 nome: nome,
-                codigo: codigo,
                 descricao: descricao
             },
             {

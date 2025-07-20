@@ -18,10 +18,10 @@ const Desafios = conexao.define(
             type: sequelize.STRING,
             allowNull: false /*Define se este parâmetro pode ser nulo*/
         },
-        codigo: {
+        /*codigo: { Não há necessidade de existir a variável código, removida dos models, controllers e API
             type: sequelize.STRING,
             allowNull: false
-        },
+        },*/
         descricao: {
             type: sequelize.STRING,
             allowNull: false

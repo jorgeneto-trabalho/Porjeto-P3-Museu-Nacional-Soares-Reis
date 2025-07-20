@@ -24,6 +24,28 @@ class AuthService {
     async logout() {
         await axios.post("http://localhost:5000/api/v1/logout");
     }
+
+    async enterQrCode(codigo_qr) {
+        try {
+            const res = await axios.post(
+                "http://localhost:5000/api/v1/evento/entrar",
+                {
+                    codigo_qr,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    timeout: 5000,
+                }
+            );
+            console.log("enterQrCode received response:", res.data);
+            return res.data;
+        } catch (error) {
+            console.error("Codigo qr falhou", error);
+            throw error;
+        }
+    }
 }
 
 export default new AuthService();

@@ -25,8 +25,8 @@ function App() {
       <Routes>
         <Route element={<Page />} >
           <Route path='/' element={<CodigoVerificacao />} />
-          <Route path='/inserir-nome' element={<InserirNome />} />
-          <Route path='/resumo' element={<Resumo />} />
+          <Route path='/inserir-nome/:id' element={<InserirNome />} />
+          <Route path='/resumo/:id' element={<Resumo />} />
           <Route path='/resultado' element={<Resultado />} />
           <Route path='/pergunta' element={<SelecionarPergunta />} >
             <Route path='/pergunta/semImagem' element={<PerguntaSemImagem />} />
