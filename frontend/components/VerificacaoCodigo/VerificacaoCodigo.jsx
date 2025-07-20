@@ -5,20 +5,27 @@ import { useNavigate, Link as RouterLink } from "react-router-dom";
 import ResponsiveAppBar from "../NavBar/NavBar";
 import { AuthContext } from "../../src/contexts/AuthContext";
 
+
+
 const CodigoVerificacao = () => {
 
     const [codigo_qr, setCodigoQr] = useState("");
-    const [link, setLink] = useState("")
+    const [idEvento, setIdEvento] = useState(null)
+
 
     const nav = useNavigate();
     const { enterQrCode, token } = useContext(AuthContext);
 
-    const entrarNoEvento = async () => {
+    console.log("enterQrCode function:", enterQrCode);
+
+    const entrarNoEvento = async (e) => {
+        e.preventDefault();
         try {
-            await enterQrCode(codigo_qr);
-            setErro(false);
-            setLink('/inserir-nome/${dados.data.data.id}');
-            localStorage.setItem("token", dados.data.token);
+            const dados = await enterQrCode(codigo_qr);
+            console.log("enterQrCode enviou:", dados);
+
+            setIdEvento(dados.evento.id);
+            localStorage.setItem("token", token);
         } catch (error) {
             console.error(error);
             alert("Código introduzido incorreto");
@@ -26,10 +33,10 @@ const CodigoVerificacao = () => {
     };
 
     useEffect(() => {
-        if (token) {
-            nav({ link });
+        if (token && idEvento) {
+            nav(`/inserir-nome/${idEvento}`);
         }
-    }, [token, nav]);
+    }, [token, idEvento, nav]);
 
     return (
         <Container component="main" maxWidth="xs">
@@ -56,10 +63,6 @@ const CodigoVerificacao = () => {
                         sx={{ mt: 3, mb: 2 }}>
                         Entrar
                     </Button>
-                    <Link
-                        component={RouterLink}
-                        to={link}
-                    />
                 </Box>
             </Box>
         </Container>

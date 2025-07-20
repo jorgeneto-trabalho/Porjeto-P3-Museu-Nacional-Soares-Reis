@@ -33,16 +33,16 @@ endpointsFunction.createEvent = async (req, res) => {
 
 /*Remove um evento pelo id*/
 endpointsFunction.deleteEvent = async (req, res) => {
-    const id = req.params;
+    const { id } = req.params;
     try {
         const dados = await Eventos.destroy({
-            where: { id: id },
+            where: { id },
+            logging: console.log,
         });
         if (!dados) {
             return res.status(404).json({
                 status: "error",
                 message: "Evento não encontrado.",
-
             });
 
         }
@@ -227,7 +227,7 @@ endpointsFunction.getEventStudents = async (req, res) => {
         res.status(200).json({
             status: "success",
             message: "Estudantes do evento encontrados com sucesso.",
-            data: dados.subjects,
+            estudantes: dados,
         });
     } catch (error) {
         res.status(500).json({

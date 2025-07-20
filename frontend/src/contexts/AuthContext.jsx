@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
   const enterQrCode = async (codigo_qr) => {
     const data = await AuthService.enterQrCode(codigo_qr);
     setToken(data.AccessToken);
+    return data;
   };
 
   return (
