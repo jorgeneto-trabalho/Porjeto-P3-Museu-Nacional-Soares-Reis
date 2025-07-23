@@ -1,4 +1,4 @@
-import { Box, Button, Container, Drawer, Grid, List, ListItem, ListItemText } from '@mui/material';
+import { Box, Button, Container, Drawer, Grid, List, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react";
 import { Link, Outlet } from 'react-router-dom';
@@ -12,7 +12,7 @@ const Backoffice = () => {
     };
     return (
         <Container>
-            <Box bgcolor={'white'} sx={{
+            <Box bgcolor={'#ffffffff'} sx={{
                 position: "fixed",
                 top: 0,
                 left: 0,

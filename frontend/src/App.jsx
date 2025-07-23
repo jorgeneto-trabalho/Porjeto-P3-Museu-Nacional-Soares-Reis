@@ -13,7 +13,7 @@ import PerguntaImagemH from '../components/Pergunta/PerguntaImagemH'
 import PerguntaImagemV from '../components/Pergunta/PerguntImagemV'
 import RankingPage from '../components/RankingPage/RankingPage'
 import Backoffice from '../components/BackOffice/Backoffice'
-import BODesafios from '../components/BackOffice/BODesafios'
+import BOEventos2 from '../components/BackOffice/BODesafios2'
 import BOEventos from '../components/BackOffice/BOEventos'
 import BOLogin from '../components/BackOffice/BOLogin'
 
@@ -39,7 +39,7 @@ function App() {
         </Route>
         <Route path='/backoffice' element={<BOLogin />} />
         <Route element={<Backoffice />} >
-          <Route path='/backoffice/desafios' element={<BODesafios />} />
+          <Route path='/backoffice/desafios' element={<BOEventos2 />} />
           <Route path='/backoffice/eventos' element={<BOEventos />} />
         </Route>
       </Routes>

@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token") ?? null);
 
   /*const login = async (email, password) => {
     const data = await AuthService.login(email, password);
@@ -22,8 +22,14 @@ export const AuthProvider = ({ children }) => {
     return data;
   };
 
+  const login = async(email, password) => {
+    const data = await AuthService.login(email, password);
+    setToken(data.AccessToken);
+    return data;
+  };
+
   return (
-    <AuthContext.Provider value={{ token, enterQrCode }}>
+    <AuthContext.Provider value={{ token, enterQrCode, login }}>
       {children}
     </AuthContext.Provider>
   );

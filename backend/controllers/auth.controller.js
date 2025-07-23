@@ -7,6 +7,12 @@ const { Eventos } = require("../models");
 
 const endpointsFunction = {};
 
+/*utilizadores temporários*/
+const utilizadoresTemporarios = [
+  { email: "Jorge", password: "12345" },
+  { email: "Tomás", password: "67890" }
+]
+
 /*endpointsFunction.register = async (req, res) => {
   const { email, password } = req.body;
 
@@ -134,58 +140,92 @@ endpointsFunction.logout = async (req, res) => {
 
 /*Para obter as informações do evento pelo códgio_qr*/
 endpointsFunction.enterQrCode = async (req, res) => {
-    const { codigo_qr } = req.body; /*O código que o utilizador inseriu na aplicação*/
-    try {
-        const eventos = await Eventos.findAll( /*eventos é uma variável que vai guardar a informação de todos os eventos */
-            {
-                attribute: []
-            }
-        );
-        if (!eventos || eventos.length === 0) {
-            return res.status(403).json({
-                success: false,
-                message: "Código inválido.",
-            });
-        }
-
-        /* Utilizamos um for loop que vai utilizar a informação dos eventos e comparar todos os codigo_qr até obter um que seja igual ao que o utilizador inseriu. Depois, a informação do evento correto é guardado dentro da variável eventoCorreto*/
-        let eventoCorreto = null;
-
-        for (const evento of eventos) {
-            const isMatch = await bcrypt.compare(codigo_qr, evento.codigo_qr);
-            if (isMatch) {
-                eventoCorreto = evento;
-                break;
-            }
-        }
-
-        if (!eventoCorreto) {
-            return res.status(403).json({
-                success: false,
-                message: "Código inválido.",
-            });
-        }
-
-        /*O token é criado utilizando o id do evento*/
-        const token = jwt.sign({ id_evento: eventoCorreto.id }, config.secret, {
-            expiresIn: config.timer,
-        });
-
-        /*Esta parte serve para que quando as informações do evento forem enviadas o código_qr não seja enviado também >>>> */
-        const { codigo_qr:_, ...eventoInformacao} = eventoCorreto.get({ plain: true });
-
-        res.status(200).json({
-            success: true,
-            message: "Autenticação realizada com sucesso.",
-            AccessToken: token,
-            evento: eventoInformacao, /*<<<< Aqui */
-        });
-    } catch (error) {
-        res.status(500).json({
-            status: "error",
-            message: "Ocorreu um erro durante o processo de autenticação.",
-        });
-        console.error(error);
+  const { codigo_qr } = req.body; /*O código que o utilizador inseriu na aplicação*/
+  try {
+    const eventos = await Eventos.findAll( /*eventos é uma variável que vai guardar a informação de todos os eventos */
+      {
+        attribute: []
+      }
+    );
+    if (!eventos || eventos.length === 0) {
+      return res.status(403).json({
+        success: false,
+        message: "Código inválido.",
+      });
     }
+
+    /* Utilizamos um for loop que vai utilizar a informação dos eventos e comparar todos os codigo_qr até obter um que seja igual ao que o utilizador inseriu. Depois, a informação do evento correto é guardado dentro da variável eventoCorreto*/
+    let eventoCorreto = null;
+
+    for (const evento of eventos) {
+      const isMatch = await bcrypt.compare(codigo_qr, evento.codigo_qr);
+      if (isMatch) {
+        eventoCorreto = evento;
+        break;
+      }
+    }
+
+    if (!eventoCorreto) {
+      return res.status(403).json({
+        success: false,
+        message: "Código inválido.",
+      });
+    }
+
+    /*O token é criado utilizando o id do evento*/
+    const token = jwt.sign({ id_evento: eventoCorreto.id }, config.secret, {
+      expiresIn: config.timer,
+    });
+
+    /*Esta parte serve para que quando as informações do evento forem enviadas o código_qr não seja enviado também >>>> */
+    const { codigo_qr: _, ...eventoInformacao } = eventoCorreto.get({ plain: true });
+
+    res.status(200).json({
+      success: true,
+      message: "Autenticação realizada com sucesso.",
+      AccessToken: token,
+      evento: eventoInformacao, /*<<<< Aqui */
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: "Ocorreu um erro durante o processo de autenticação.",
+    });
+    console.error(error);
+  }
 };
+
+endpointsFunction.login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    let allowLoggin = null;
+    for (utilizador of utilizadoresTemporarios) {
+      if (email == utilizador.email && password == utilizador.password) {
+        allowLoggin = utilizador;
+        break;
+      }
+    }
+    if (!allowLoggin) {
+      return res.status(403).json({
+        success: false,
+        message: "Email ou password errados.",
+      });
+    }
+    const token = jwt.sign({ email: allowLoggin.email }, config.secret, {
+      expiresIn: config.timer,
+    });
+    res.status(200).json({
+      success: true,
+      message: "Autenticação realizada com sucesso.",
+      AccessToken: token,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: "Ocorreu um erro durante o processo de autenticação.",
+    });
+    console.error(error);
+  }
+}
+
 module.exports = endpointsFunction;

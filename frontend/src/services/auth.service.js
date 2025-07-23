@@ -15,6 +15,7 @@ class AuthService {
                     },
                 }
             );
+            console.log("login received response:", res.data);
             return res.data;
         } catch (error) {
             console.error("Login failed", error);

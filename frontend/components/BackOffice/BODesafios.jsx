@@ -272,4 +272,4 @@ const BODesafios = () => {
     )
 };
 
-export default BODesafios
+export default BODesafio

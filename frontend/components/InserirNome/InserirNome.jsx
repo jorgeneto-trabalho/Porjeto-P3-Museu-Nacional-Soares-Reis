@@ -12,9 +12,7 @@ const InserirNome = () => {
     const { token } = useContext(AuthContext);/*Token de acesso armazenado no AuthContext*/
     console.log("token:", token);
 
-    const [nickname, setNickname] = useState("")
-
-    const [estudante, setEstudante] = useState({ nome: "", id_evento: null });
+    const [nickname, setNickname] = useState("");
 
     const [nomes, setNomes] = useState([]);
 
@@ -50,6 +48,12 @@ const InserirNome = () => {
 
     useEffect(() => { /*O useEffect utiliza o encontrar nomes assim que a página carrega*/
         encontrarNomes();
+
+        const intervalo = setInterval(() => {
+            encontrarNomes();
+        }, 5000);
+
+        return () => clearInterval(intervalo);
     }, [] /* Estas [] inpedêm que o useEffect faça re-render infinitamente por causa do setNomes */);
 
     const registarNickname = async (e) => {
@@ -72,12 +76,14 @@ const InserirNome = () => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: token && token.token ? `Bearer ${token}` : undefined,
+                        Authorization: `Bearer ${token}`
                     },
                 },
             );
             console.log("Estudante:", dados);
-
+            if (dados) {
+                nav(`/pergunta/semImagem`);
+            }
         } catch (error) {
             console.error(error);
             alert("Erro ao introduzir o nome");
