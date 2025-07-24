@@ -1,11 +1,17 @@
-import { Box, Button, Card, CardActions, Container, FormControl, Grid, Input, InputLabel, List, Modal, TextField, Typography, ListItem, ListItemText, Checkbox, Select, MenuItem, RadioGroup, FormLabel, Radio } from "@mui/material";
+import { Box, Button, Modal, TextField, Typography, Autocomplete } from "@mui/material";
 import { useState } from "react";
 import { DataGrid } from '@mui/x-data-grid';
-import Paper from '@mui/material/Paper';
+import dayjs from "dayjs";
+import Paper from "@mui/material/Paper";
+import { LocalizationProvider } from "@mui/x-date-pickers-pro";
+import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+
 import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon   from "@mui/icons-material/Done";
 import EditIcon   from "@mui/icons-material/Edit";
 import AddIcon from '@mui/icons-material/Add';
+
 
 
 const BOEventos = () => {
@@ -13,17 +19,23 @@ const BOEventos = () => {
     const handleTerminar = (id) => console.log("Terminar", id);
     const handleEditar   = (id) => console.log("Editar", id);
 
+    const [nomeEvento, setNomeEvento] = useState('');
+    const [data, setData] = useState(dayjs());
+    const [open, setOpen] = useState(false);
+    const handleOpen  = () => setOpen(true);   // mostra
+    const handleClose = () => setOpen(false);  // esconde
+
     const columns = [
         { field: 'id', headerName: 'ID', flex: 0.1 },
         { field: 'nomeEvento', headerName: 'Evento', flex: 0.4 },
         { field: 'nomeDesafio', headerName: 'Desafio', flex: 0.4 },
-        { field: 'nomeEscola', headerName: 'Escola', flex: 0.4 },
+        { field: 'nomeEscola', headerName: 'Escola', flex: 0.5 },
         { field: 'data', headerName: 'Data', flex: 0.1 },
         { field: 'codigo', headerName: 'Código', flex: 0.1 },
         {
             field: 'acoes',
             headerName: '',
-            width: 350,
+            flex: 0.3,
             sortable: false,
             filterable: false,
             disableColumnMenu: true,
@@ -31,19 +43,22 @@ const BOEventos = () => {
             <Box 
                 sx={{ 
                     display: 'flex', 
-                    gap: 1, 
+                    gap: 0, 
                     justifyContent: "left", 
                     alignItems: "center", 
-                    height:"100%" 
+                    height:"100%",
+                    gap: 1
                 }}
             >
                 <Button 
                     variant="contained"
                     sx={{
+                        height:"72%",
                         borderRadius: 0,
                         borderTopLeftRadius: "10px",
                         borderBottomLeftRadius: "10px",
                         backgroundColor: "#ff6600ff",
+                        boxShadow: 0
                     }}
                 >
                     <EditIcon />
@@ -51,9 +66,11 @@ const BOEventos = () => {
                 <Button 
                     variant="contained"
                     sx={{
+                        height:"72%",
                         borderRadius: 0,
                         borderTopRightRadius: "10px",
                         borderBottomRightRadius: "10px",
+                        boxShadow: 0,
                         gap: 1
                     }}
                 >
@@ -93,11 +110,11 @@ const BOEventos = () => {
             >
                 <Box 
                     sx={{
-                        display: 'flex',            // <- activa layout flex
-                        flexDirection: 'row',       // <- garante “em linha”
-                        alignItems: 'center',       // <- centra verticalmente
-                        justifyContent: 'space-between', // opcional: espaço entre título e botão
-                        gap: 2,                     // opcional: distância se tiveres + itens
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: 2,
                         borderBottom: 1,
                         borderRadius: "20px",
                         backgroundColor: '#fff',
@@ -124,6 +141,7 @@ const BOEventos = () => {
                     <Box>
                         <Button 
                             variant="contained"
+                            onClick={handleOpen}
                             sx={{
                                 p: 1,
                                 borderRadius: 0,
@@ -178,6 +196,102 @@ const BOEventos = () => {
                 </Box>
             </Box>                    
             
+            <Modal 
+                open={open} 
+                onClose={handleClose} 
+                sx={{
+                    boxShadow: 0,
+                    background: "rgba(255, 255, 255, 0.18)",
+                    backdropFilter: "blur(10px)",
+                    WebkitBackdropFilter: "blur(10px)",
+                }}
+            >
+                <Box
+                    sx={{
+                    position: 'absolute',
+                    width: "60%",
+                    height: "60%",
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    bgcolor: 'white',
+                    p: 4,
+                    m: 4,
+                    gap: 3,
+                    borderRadius: "20px",
+                    boxShadow: 24,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    }}
+                >
+                    <Box 
+                        sx={{
+                            flex: 1,
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            gap: 1,
+                            flexDirection: 'column',
+                            borderBottom: 1,
+                            borderRadius: "20px",
+                            backgroundColor: '#fff',
+                            border: "solid 1.5px #c7c6c6ff",
+                            boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)",
+                            p: 2,
+                        }}
+                    >
+                        <TextField
+                            id="nomeEvento"
+                            label="Nome do Evento"
+                            name="nomeEvento"
+                            type="name"
+                            value={nomeEvento}
+                            onChange={(e) => setNomeEvento(e.target.value)}
+                            required
+                            sx={{ mt: 6, width: "100%" }}
+                        />
+                        <Autocomplete
+                            disablePortal
+                            //options={allDesafios}
+                            sx={{ width: "100%" }}
+                            renderInput={(params) => <TextField {...params} label="Desafio" />}
+                        />
+                        <Autocomplete
+                            disablePortal
+                            //options={allEscolas}
+                            sx={{ width: "100%" }}
+                            renderInput={(params) => <TextField {...params} label="Escola" />}
+                        />
+                    </Box>
+                    <Box 
+                        sx={{
+                            flex: 1,
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            gap: 2,
+                            flexDirection: 'column',
+                            borderBottom: 1,
+                            borderRadius: "20px",
+                            backgroundColor: '#fff',
+                            border: "solid 1.5px #c7c6c6ff",
+                            boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)",
+                            p: 2,
+                        }}
+                    >
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DatePicker
+                                label="Data"
+                                value={data}
+                                onChange={(newVal) => setData(newVal)}
+                            />
+                        </LocalizationProvider>
+                    </Box>
+                </Box>
+            </Modal>
+
         </>
     )
 }
