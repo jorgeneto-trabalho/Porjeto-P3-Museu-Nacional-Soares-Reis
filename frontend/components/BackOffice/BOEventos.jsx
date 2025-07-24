@@ -1,11 +1,12 @@
 import { Box, Button, Modal, TextField, Typography, Autocomplete } from "@mui/material";
 import { useState } from "react";
 import { DataGrid } from '@mui/x-data-grid';
+
 import dayjs from "dayjs";
 import Paper from "@mui/material/Paper";
-import { LocalizationProvider } from "@mui/x-date-pickers-pro";
-import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon   from "@mui/icons-material/Done";
@@ -217,11 +218,12 @@ const BOEventos = () => {
                     bgcolor: 'white',
                     p: 4,
                     m: 4,
-                    gap: 3,
+                    gap: 4,
                     borderRadius: "20px",
                     boxShadow: 24,
                     display: 'flex',
                     flexDirection: 'row',
+                    minHeight: 0,
                     }}
                 >
                     <Box 
@@ -264,31 +266,57 @@ const BOEventos = () => {
                             renderInput={(params) => <TextField {...params} label="Escola" />}
                         />
                     </Box>
-                    <Box 
+                    <Box
                         sx={{
-                            flex: 1,
                             display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            gap: 2,
                             flexDirection: 'column',
-                            borderBottom: 1,
-                            borderRadius: "20px",
-                            backgroundColor: '#fff',
-                            border: "solid 1.5px #c7c6c6ff",
-                            boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)",
-                            p: 2,
+                            gap: 4,
+                            height: "100%"
                         }}
                     >
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker
-                                label="Data"
-                                value={data}
-                                onChange={(newVal) => setData(newVal)}
-                            />
-                        </LocalizationProvider>
+                        <Box 
+                            sx={{
+                                flex: 0.8,
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                gap: 2,
+                                minHeight: 0,
+                                flexDirection: 'column',
+                                borderBottom: 1,
+                                borderRadius: "20px",
+                                backgroundColor: '#fff',
+                                border: "solid 1.5px #c7c6c6ff",
+                                boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)",
+                                p: 2,
+                            }}
+                        >
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DateCalendar value={data} onChange={setData} sx={{ color: "black" }} />
+                            </LocalizationProvider>
+                        </Box>
+                        <Box 
+                            sx={{
+                                flex: 0.2,
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: 2,
+                                borderRadius: "20px",
+                                backgroundColor: '#fff',
+                                border: "solid 1.5px #c7c6c6ff",
+                                boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)",
+                                p: 2,
+                            }}
+                        >
+                            <Typography sx={{color: "black"}}>
+                                Gerador de Códigos
+                            </Typography>
+                        </Box>
                     </Box>
+                    
                 </Box>
             </Modal>
 
