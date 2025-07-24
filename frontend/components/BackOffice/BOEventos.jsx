@@ -12,6 +12,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon   from "@mui/icons-material/Done";
 import EditIcon   from "@mui/icons-material/Edit";
 import AddIcon from '@mui/icons-material/Add';
+import CasinoRoundedIcon from '@mui/icons-material/CasinoRounded';
 
 
 
@@ -55,7 +56,6 @@ const BOEventos = () => {
                     variant="contained"
                     sx={{
                         height:"72%",
-                        borderRadius: 0,
                         borderTopLeftRadius: "10px",
                         borderBottomLeftRadius: "10px",
                         backgroundColor: "#ff6600ff",
@@ -68,7 +68,6 @@ const BOEventos = () => {
                     variant="contained"
                     sx={{
                         height:"72%",
-                        borderRadius: 0,
                         borderTopRightRadius: "10px",
                         borderBottomRightRadius: "10px",
                         boxShadow: 0,
@@ -145,7 +144,6 @@ const BOEventos = () => {
                             onClick={handleOpen}
                             sx={{
                                 p: 1,
-                                borderRadius: 0,
                                 borderTopLeftRadius: "10px",
                                 borderBottomLeftRadius: "10px",
                                 mr: 0.5,
@@ -158,7 +156,6 @@ const BOEventos = () => {
                             variant="contained"
                             sx={{
                                 p: 1,
-                                borderRadius: 0,
                                 borderTopRightRadius: "10px",
                                 borderBottomRightRadius: "10px",
                                 ml: 0.5,
@@ -230,41 +227,123 @@ const BOEventos = () => {
                         sx={{
                             flex: 1,
                             display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            gap: 1,
                             flexDirection: 'column',
-                            borderBottom: 1,
                             borderRadius: "20px",
                             backgroundColor: '#fff',
                             border: "solid 1.5px #c7c6c6ff",
                             boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)",
-                            p: 2,
+                            p: 4,
                         }}
                     >
-                        <TextField
-                            id="nomeEvento"
-                            label="Nome do Evento"
-                            name="nomeEvento"
-                            type="name"
-                            value={nomeEvento}
-                            onChange={(e) => setNomeEvento(e.target.value)}
-                            required
-                            sx={{ mt: 6, width: "100%" }}
-                        />
-                        <Autocomplete
-                            disablePortal
-                            //options={allDesafios}
-                            sx={{ width: "100%" }}
-                            renderInput={(params) => <TextField {...params} label="Desafio" />}
-                        />
-                        <Autocomplete
-                            disablePortal
-                            //options={allEscolas}
-                            sx={{ width: "100%" }}
-                            renderInput={(params) => <TextField {...params} label="Escola" />}
-                        />
+                        <Box sx={{justifyContent: 'top', height: "20%", display: 'flex', flexDirection: "column"}}>
+                            <Typography 
+                                variant="h5"
+                                sx={{
+                                    color: "black",
+                                    fontWeight: 700,
+                                    textAlign: "left",
+                                }}
+                            >
+                                Criar Evento
+                            </Typography>
+                            <Typography 
+                                variant="h7"
+                                sx={{
+                                    color: "grey",
+                                    textAlign: "left",
+                                    mb: 6
+                                }}
+                            >
+                                Garanta que todos os campos estão preenchidos
+                            </Typography>
+                        </Box>
+                        <Box sx={{justifyContent: 'top', height: "60%", display: 'flex', flexDirection: "column"}}>
+                            
+                            <TextField
+                                id="nomeEvento"
+                                label="Nome do Evento"
+                                name="nomeEvento"
+                                type="name"
+                                value={nomeEvento}
+                                onChange={(e) => setNomeEvento(e.target.value)}
+                                required
+                                sx={{ width: "100%", mb: 2 }}
+                            />
+                            <Box sx={{display: 'flex', gap: 1.5}}>
+                                <Autocomplete
+                                    disablePortal
+                                    //options={allDesafios}
+                                    sx={{ width: "100%", mb: 2 }}
+                                    renderInput={(params) => <TextField {...params} label="Desafio" />}
+                                />
+                                <Button 
+                                    variant="contained"
+                                    sx={{
+                                        borderTopRightRadius: "20px",
+                                        borderBottomRightRadius: "20px",
+                                        height: (theme) => theme.spacing(7),
+                                        backgroundColor: "green",
+                                        boxShadow: 0,
+                                        p:0
+                                    }}
+                                >
+                                    <AddIcon/>
+                                </Button>
+                            </Box>
+                            <Box sx={{display: 'flex', gap: 1.5}}>
+                                <Autocomplete
+                                    disablePortal
+                                    //options={allEscolas}
+                                    sx={{ width: "100%", mb: 2 }}
+                                    renderInput={(params) => <TextField {...params} label="Escola" />}
+                                />
+                                <Button 
+                                    variant="contained"
+                                    sx={{
+                                        borderTopRightRadius: "20px",
+                                        borderBottomRightRadius: "20px",
+                                        height: (theme) => theme.spacing(7),
+                                        backgroundColor: "green",
+                                        boxShadow: 0,
+                                        p:0
+                                    }}
+                                >
+                                    <AddIcon/>
+                                </Button>
+                            </Box>
+                        </Box>
+                        <Box sx={{alignItems: "flex-end", height: "20%", display: 'flex', justifyContent: 'space-between',}}>
+                            <Button
+                                variant="contained"
+                                sx={{
+                                    p: 1,
+                                    borderRadius: "10px",
+                                    backgroundColor: "green",
+                                    textTransform: 'none',
+                                    width: "15%",
+                                    height: "50%",
+                                    boxShadow: 0,
+                                }}
+                            >
+                                Criar
+                            </Button>
+                            <Button
+                                variant="contained"
+                                sx={{
+                                    p: 1,
+                                    borderRadius: "10px",
+                                    backgroundColor: "red",
+                                    textTransform: 'none',
+                                    width: "10%",
+                                    height: "50%",
+                                    boxShadow: 0,
+                                }}
+                            >
+                                <DeleteIcon />
+                            </Button>
+                        </Box>
+                        
+                        
                     </Box>
                     <Box
                         sx={{
@@ -300,20 +379,45 @@ const BOEventos = () => {
                             sx={{
                                 flex: 0.2,
                                 display: 'flex',
-                                flexDirection: 'row',
+                                flexDirection: 'column',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                gap: 2,
                                 borderRadius: "20px",
                                 backgroundColor: '#fff',
                                 border: "solid 1.5px #c7c6c6ff",
                                 boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.15)",
-                                p: 2,
+                                p: 3,
                             }}
                         >
-                            <Typography sx={{color: "black"}}>
-                                Gerador de Códigos
-                            </Typography>
+                            <TextField
+                                id="codigo"
+                                label="Código"
+                                name="codigo"
+                                type="code"
+                                //value={codigo}
+                                onChange={(e) => setCodigo(e.target.value)}
+                                required
+                                sx={{ 
+                                    width: "100%", 
+                                    '& .MuiOutlinedInput-notchedOutline': { borderRadius: 0, borderTopRightRadius: "10px", borderTopLeftRadius: "10px" },
+                                }}
+                            />
+                            <Button
+                                variant="contained"
+                                sx={{
+                                    p: 1,
+                                    borderRadius: "10px",
+                                    backgroundColor: "#0b0353ff",
+                                    textTransform: 'none',
+                                    width: "100%",
+                                    borderTopLeftRadius: 0,
+                                    borderTopRightRadius: 0,
+                                    boxShadow: 0,
+                                    border: "solid 1.5px #0b0353ff",
+                                }}
+                            >
+                                <CasinoRoundedIcon />
+                            </Button>
                         </Box>
                     </Box>
                     
